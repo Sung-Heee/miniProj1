@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>[메인페이지]</h1>
+<header>
+<div></div>
+</header>
 </body>
 </html>
