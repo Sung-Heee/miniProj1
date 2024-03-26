@@ -390,6 +390,16 @@
 	color : #8B78FF;
 }
 
+/* 사용자 */ 
+.login-container {
+	display : flex;
+	justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+	width : 100%;
+	height : calc(100vh - 110px);
+}
+
 a {
 	text-decoration: none;
 	cursor : pointer;
