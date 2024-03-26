@@ -39,6 +39,7 @@ public class BoardController {
 		Map<String, Object> map = new HashMap<>();
 		if (updated == 1) {
 			map.put("status", 0); // 성공
+			map.put("statusMessage", "게시물이 삭제되었습니다.");
 		} else {
 			map.put("status", -1);
 			map.put("statusMessage", "게시물 삭제 실패하였습니다.");

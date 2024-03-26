@@ -107,7 +107,7 @@ function jsDelete() {
 		myFetch("board.do", "detailForm", json => {
 			if (json.status == 0) {
 				// 성공
-				alert("삭제되었습니다.");
+				alert(json.statusMessage);
 				location = "board.do?action=list";
 			} else {  
 				alert(json.statusMessage);

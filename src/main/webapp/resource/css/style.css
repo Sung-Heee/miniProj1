@@ -83,7 +83,7 @@
 .list-inner-container {
 	width : 70vw;
 	height : 70vh;
-	border:1px solid black;
+	/* border:1px solid black; */
 }
 
 .list-top-menu {
@@ -107,11 +107,76 @@
 }
 
 .searchbar-container {
-	border: 1px solid black;
+	width : 30%;
+	border: 1px solid #AFAFAF;
 }
 
 .searchbar {
+	width : 100%;
 	display : flex;
+	padding : 10px;
+}
+
+.searchbar-input {
+	font-size: 18px;
+	width : 90%;
+	border : none;
+}
+
+.searchbar-input:focus {
+	outline:none;
+}
+
+.searchbar-a {
+	font-size: 18px;
+	color : black;
+	cursor : pointer;
+	display : flex;
+	justify-content: flex-end;
+	width : 10%;
+}
+
+.searchbar-a:hover {
+	color : #8B78FF;
+}
+
+.list {
+	width: 100%;
+	height : 90%;
+	/* background-color: red; */
+}
+
+
+.list-content, .list-top-content {
+	display : flex;
+	align-items: center;
+	height : 15%;
+	font-size: 20px;
+	border-bottom : 1px solid #D7D7D7;
+}
+
+.list-top-content {
+	border-bottom : 2px solid black;
+}
+
+.no-area, .writer-area, .date-area {
+	width : 20%;
+	display : flex;
+	justify-content: center;
+}
+
+.title-area {
+ 	width: 40%;	
+ 	display : flex;
+ 	justify-content: center;
+}
+
+.title-a {
+	color : black;
+}
+
+.title-a:hover {
+	color : #8B78FF;
 }
 
 /* 상세보기 페이지 */
@@ -141,7 +206,7 @@
 
 .top-bno {
 	padding : 10px 50px;
-	font-size : 25px;
+	font-size : 23px;
 	background-color: #8B78FF;
 	color : white;
 	border-radius : 30px;
