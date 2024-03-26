@@ -84,7 +84,7 @@
     </div>
     
     <div class="detail-btn-container">
-    	<a class="modify-btn">수정</a>
+    	<a href="board.do?action=updateForm&bno=${board.bno}" class="modify-btn">수정</a>
     	<a href="javascript:jsDelete()" class="delete-btn">삭제</a>
     </div>
 </div>

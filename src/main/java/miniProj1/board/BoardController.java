@@ -71,4 +71,29 @@ public class BoardController {
 		return "insertForm";
 	}
 
+	public Object updateForm(HttpServletRequest request, BoardVO boardVO) throws SQLException {
+		System.out.println("[게시물 수정 화면]");
+		
+		request.setAttribute("board", boardService.updateForm(boardVO));
+		
+		return "updateForm";
+	}
+
+	public Object update(HttpServletRequest request, BoardVO boardVO) throws SQLException {
+		System.out.println("[게시물 수정]");
+		
+		int updated = boardService.update(boardVO);
+		
+		Map<String, Object> map = new HashMap<>();
+		if (updated == 1) {
+			map.put("status", 0); // 성공
+			map.put("statusMessage", "게시물이 수정되었습니다.");
+		} else {
+			map.put("status", -1);
+			map.put("statusMessage", "게시물 수정 실패하였습니다.");
+		}
+	
+		return map;
+	}
+
 }
