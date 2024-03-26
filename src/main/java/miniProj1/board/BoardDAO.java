@@ -58,6 +58,7 @@ public class BoardDAO {
    			list.add(board);
  		} 
     	rs.close();
+    	conn.commit();
     	
     	return list;
     }
@@ -77,6 +78,7 @@ public class BoardDAO {
     				, rs.getString("BOARD_DATE"));
 		}
 		rs.close();
+		conn.commit();
 
 		return board;
 	}
@@ -88,6 +90,7 @@ public class BoardDAO {
 		
 		updated = boardDeletePstmt.executeUpdate();
 		
+		conn.commit();
 		return updated;
 	}
 
