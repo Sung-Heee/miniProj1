@@ -18,4 +18,8 @@ public class BoardService {
 		return boardDAO.detail(boardVO);
 	}
 
+	public int delete(BoardVO boardVO) throws SQLException {
+		return boardDAO.delete(boardVO);
+	}
+
 }
