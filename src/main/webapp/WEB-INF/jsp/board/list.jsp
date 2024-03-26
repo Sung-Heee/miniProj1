@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>board list</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="resource/css/style.css">
 </head>
 <body>
 <header>
@@ -61,7 +61,7 @@
     <c:forEach var="board" items="${list}">
     <tr>
         <td onclick="jsView('${board.bno}')"  style="cursor:pointer;">${board.bno}</td>
-        <td><a href="board.do?action=view&bno=${board.bno}">${board.btitle}</a></td>
+        <td><a href="board.do?action=detail&bno=${board.bno}">${board.btitle}</a></td>
         <td>${board.bwriter}</td>
         <td>${board.bdate}</td>
     </tr>
