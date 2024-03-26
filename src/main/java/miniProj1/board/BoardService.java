@@ -22,4 +22,8 @@ public class BoardService {
 		return boardDAO.delete(boardVO);
 	}
 
+	public int insert(BoardVO boardVO) throws SQLException {	
+		return boardDAO.insert(boardVO);
+	}
+
 }

@@ -48,4 +48,27 @@ public class BoardController {
 		return map;
 	}
 
+	public Object insert(HttpServletRequest request, BoardVO boardVO) throws SQLException {
+		System.out.println("[게시물 등록]");
+		
+		int updated = boardService.insert(boardVO);
+		
+		Map<String, Object> map = new HashMap<>();
+		if (updated == 1) {
+			map.put("status", 0); // 성공
+			map.put("statusMessage", "게시물이 등록되었습니다.");
+		} else {
+			map.put("status", -1);
+			map.put("statusMessage", "게시물 등록 실패하였습니다.");
+		}
+	
+		return map;
+	}
+
+	public Object insertForm(HttpServletRequest request) {
+		System.out.println("[게시물 등록 화면]");
+		
+		return "insertForm";
+	}
+
 }
