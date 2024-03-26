@@ -15,7 +15,6 @@
 	height: 110px;
 	display: flex;
 	align-items: center;
-	border-bottom : 1px solid gray;
 }
 
 .logo-container {
@@ -271,12 +270,112 @@
 	color : #8B78FF;
 }
 
-.modify-btn:hover, .delete-btn:hover {
+.modify-btn:hover, .delete-btn:hover , .insertForm-btn:hover {
 	transition : 0.5s;
 	background-color : #8B78FF; 
 	color : white;
 }
 
+/* insert */
+.insertForm-container {
+	display : flex;
+	justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+	width : 100%;
+	height : calc(100vh - 110px);
+}
+
+.insertForm-inner-container {
+	padding : 0 30px;
+	width : 30vw;
+	height : 70vh;
+	border : 1px solid #D7D7D7;
+}
+
+.insertForm-title-container {
+	font-size : 20px;
+	display : flex;
+	align-items: flex-end;
+	width : 100%;
+	height : 20%;
+	border-bottom : 2px solid #D7D7D7;
+}
+
+.insertForm-title {
+	display : flex;
+	align-items: center;
+	width : 20%;
+	height : 30%;
+}
+
+.insertForm-title-input {
+	display : flex;
+	align-items: center;
+	font-size : 18px;
+	width : 80%;
+	height : 30%;
+	border : none;
+}
+
+.insertForm-title-input:focus , .insertForm-content-input:focus {
+	outline: none;
+}
+
+.insertForm-content-container {
+	font-size : 20px;
+	display : flex;
+	width : 100%;
+	height : 60%;
+	flex-direction: column;
+}
+
+.insertForm-content {
+	display : flex;
+	align-items: flex-end;
+	width : 100%;
+	height : 20%;
+}
+
+.insertForm-content-area {
+	display : flex;
+	align-items: center;
+	width : 20%;
+	height: 50%;
+
+}
+
+.insertForm-content-input-container {
+	height : 70%; 
+	border : 2px solid #D7D7D7;
+}
+
+.insertForm-content-input {
+	padding : 10px;
+	font-size : 18px;
+	width : 100%;
+	border : none;
+	resize: none;
+}
+
+.insertForm-btn-container {
+	display : flex;
+	align-items: center;
+	width : 100%;
+	height : 20%;
+	justify-content: flex-end;
+}
+
+.insertForm-btn {
+	font-size : 20px;
+	justify-content: center;
+	align-items: center;
+	display : flex;
+	width : 30%;
+	height : 35%;
+	border : 1px solid #8B78FF;
+	color : #8B78FF;
+}
 
 a {
 	text-decoration: none;
