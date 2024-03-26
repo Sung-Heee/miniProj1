@@ -25,5 +25,13 @@ public class BoardService {
 	public int insert(BoardVO boardVO) throws SQLException {	
 		return boardDAO.insert(boardVO);
 	}
+	
+	public int update(BoardVO boardVO) throws SQLException {	
+		return boardDAO.update(boardVO);
+	}
+
+	public Object updateForm(BoardVO boardVO) throws SQLException {
+		return boardDAO.detail(boardVO);
+	}
 
 }

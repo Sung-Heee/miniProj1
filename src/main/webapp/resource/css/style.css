@@ -225,7 +225,7 @@
 }
 
 .detail-content {
-	padding-top : 3%;
+	padding : 3% 0 3% 0;
 	border-bottom : 1px solid #D7D7D7;
 	display : flex;
 	height : 40%;
@@ -240,6 +240,19 @@
 .content {
 	display : flex;
 	width : 90%;	
+	
+}
+
+.content-input {
+	font-size : 20px;
+	display : flex;
+	width : 90%;	
+	padding : 0 10px;
+	resize : none;
+}
+
+.content-input:focus {
+	outline: none;
 }
 
 .detail-btn-container {
