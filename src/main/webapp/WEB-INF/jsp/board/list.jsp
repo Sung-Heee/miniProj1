@@ -40,37 +40,31 @@
 <div class="list-inner-container">
 	<div class="list-top-menu">
 		<div class="insert-container">
-			<a href="" class="insert-btn">글 작성하기</a>
+			<a href="board.do?action=insertForm" class="insert-btn">+ 글 작성하기</a>
 		</div>
 		<div class="searchbar-container">
 			<div class="searchbar">
-				<input type="text" placeholder="제목을 입력해주세요.">
-				<a href="">검색</a>
+				<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
+				<a href="" class="searchbar-a">검색</a>
 			</div>
 		</div>
 	</div>
 	
 	<div class="list">
-<table border="1">
-	<tr>
-    	<th>게시물번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-    </tr>
+	<div class="list-top-content">
+    	<div class="no-area">No.</div>
+        <div class="title-area">제목</div>
+        <div class="writer-area">작성자</div>
+        <div class="date-area">작성일자</div>
+    </div>
     <c:forEach var="board" items="${list}">
-    <tr>
-        <td onclick="jsView('${board.bno}')"  style="cursor:pointer;">${board.bno}</td>
-        <td><a href="board.do?action=detail&bno=${board.bno}">${board.btitle}</a></td>
-        <td>${board.bwriter}</td>
-        <td>${board.bdate}</td>
-    </tr>
+	<div class="list-content">
+        <div class="no-area">${board.bno}</div>
+        <div class="title-area"><a href="board.do?action=detail&bno=${board.bno}" class="title-a">${board.btitle}</a></div> 
+        <div class="writer-area">${board.bwriter}</div> 
+        <div class="date-area">${board.bdate}</div> 
+	</div>	
     </c:forEach>
-</table>
-
-<div class="button-container">
-    <a href="board.do?action=insertForm" class="btn">등록</a>
-</div>
 
 </div>
 </div>
