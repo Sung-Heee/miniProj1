@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="resource/css/style.css">
 </head>
 <body>
 <header>

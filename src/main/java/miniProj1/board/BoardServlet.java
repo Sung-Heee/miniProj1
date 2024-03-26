@@ -1,6 +1,7 @@
 package miniProj1.board;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,14 +36,24 @@ public class BoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doService(request, response);
+		try {
+			doService(request, response);
+		} catch (ServletException | IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doService(request, response);
+		try {
+			doService(request, response);
+		} catch (ServletException | IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -62,7 +73,7 @@ public class BoardServlet extends HttpServlet {
 	}
 	
 	// 공통 처리 함수 doService 
-	private void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		System.out.println("request" + request);
 		
 		//한글 설정 
@@ -85,6 +96,7 @@ public class BoardServlet extends HttpServlet {
 		String action = boardVO.getAction();
 		Object result = switch(action) {
 		case "list" -> boardController.list(request, boardVO);
+		case "detail" -> boardController.detail(request, boardVO);
 		default -> "";
 		};
 		

@@ -13,6 +13,8 @@ public class BoardDAO {
     
     // list
     private static PreparedStatement boardListPstmt = null;
+    // detail
+    private static PreparedStatement boardDetailPstmt = null;
 
     static {
     	try {
@@ -29,6 +31,7 @@ public class BoardDAO {
             conn.setAutoCommit(false);
             
             boardListPstmt = conn.prepareStatement("SELECT * FROM TB_BOARD ORDER BY BOARD_ID");
+            boardDetailPstmt = conn.prepareStatement("SELECT * FROM TB_BOARD WHERE BOARD_ID = ?");
     	} catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -36,30 +39,43 @@ public class BoardDAO {
         }
     }
     
-    public List<BoardVO> list(BoardVO boardVO) {
+    public List<BoardVO> list(BoardVO boardVO) throws SQLException {
     	List<BoardVO> list = new ArrayList<>();
-    	
-    	try {
-    		ResultSet rs = null;
-    		rs = boardListPstmt.executeQuery();
-    		// 검색
+    	ResultSet rs = null;
+    	rs = boardListPstmt.executeQuery();
+    	// 검색
     		
-    		
-    		while (rs.next()) {
-    			BoardVO board = new BoardVO(rs.getString("BOARD_ID")
-    					, rs.getString("BOARD_TITLE")
-    					, rs.getString("BOARD_CONTENT")
-    					, rs.getString("BOARD_WRITER")
-    					, rs.getString("BOARD_DATE"));
-    			
-    			list.add(board);
-    		} 
-    		rs.close();
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
+    	while (rs.next()) {
+    		BoardVO board = new BoardVO(rs.getString("BOARD_ID")
+   					, rs.getString("BOARD_TITLE")
+   					, rs.getString("BOARD_CONTENT")
+    				, rs.getString("BOARD_WRITER")
+    				, rs.getString("BOARD_DATE"));
+
+   			list.add(board);
+ 		} 
+    	rs.close();
     	
     	return list;
     }
+
+	public BoardVO detail(BoardVO boardVO) throws SQLException {
+		BoardVO board = null;
+		
+		boardDetailPstmt.setString(1, boardVO.getBno());
+		
+		ResultSet rs = boardDetailPstmt.executeQuery();
+		
+		if (rs.next()) {
+			board = new BoardVO(rs.getString("BOARD_ID")
+   					, rs.getString("BOARD_TITLE")
+   					, rs.getString("BOARD_CONTENT")
+    				, rs.getString("BOARD_WRITER")
+    				, rs.getString("BOARD_DATE"));
+		}
+		rs.close();
+
+		return board;
+	}
 
 }
