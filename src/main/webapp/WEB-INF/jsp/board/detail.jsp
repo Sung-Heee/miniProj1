@@ -91,8 +91,13 @@
 </div>
 </div>
 
+<form id="detailForm" name="detailForm" method="post" action="board.do">
+    <input type="hidden" id="action" name="action" value="">
+    <input type="hidden" name="bno" value="${board.bno}">
+</form>
+
 <!-- javascript -->
-<script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
+<script type="text/javascript" src="<c:url value='resource/js/common.js'/>"></script>
 <script type="text/javascript">
 
 /* 삭제 */
@@ -104,7 +109,7 @@ function jsDelete() {
 				// 성공
 				alert("삭제되었습니다.");
 				location = "board.do?action=list";
-			} else {
+			} else {  
 				alert(json.statusMessage);
 			}
 		});

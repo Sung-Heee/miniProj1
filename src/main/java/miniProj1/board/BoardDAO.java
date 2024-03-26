@@ -15,6 +15,8 @@ public class BoardDAO {
     private static PreparedStatement boardListPstmt = null;
     // detail
     private static PreparedStatement boardDetailPstmt = null;
+    // delete 
+    private static PreparedStatement boardDeletePstmt = null;
 
     static {
     	try {
@@ -32,6 +34,7 @@ public class BoardDAO {
             
             boardListPstmt = conn.prepareStatement("SELECT * FROM TB_BOARD ORDER BY BOARD_ID");
             boardDetailPstmt = conn.prepareStatement("SELECT * FROM TB_BOARD WHERE BOARD_ID = ?");
+            boardDeletePstmt = conn.prepareStatement("DELETE FROM TB_BOARD WHERE BOARD_ID = ?");
     	} catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -76,6 +79,16 @@ public class BoardDAO {
 		rs.close();
 
 		return board;
+	}
+
+	public int delete(BoardVO boardVO) throws SQLException {
+		int updated = 0;
+		
+		boardDeletePstmt.setString(1, boardVO.getBno());
+		
+		updated = boardDeletePstmt.executeUpdate();
+		
+		return updated;
 	}
 
 }

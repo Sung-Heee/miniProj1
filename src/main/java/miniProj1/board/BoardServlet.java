@@ -97,6 +97,7 @@ public class BoardServlet extends HttpServlet {
 		Object result = switch(action) {
 		case "list" -> boardController.list(request, boardVO);
 		case "detail" -> boardController.detail(request, boardVO);
+		case "delete" -> boardController.delete(request, boardVO);
 		default -> "";
 		};
 		
