@@ -85,11 +85,34 @@
     
     <div class="detail-btn-container">
     	<a class="modify-btn">수정</a>
-    	<a class="delete-btn">삭제</a>
+    	<a href="javascript:jsDelete()" class="delete-btn">삭제</a>
     </div>
 </div>
 </div>
 </div>
+
+<!-- javascript -->
+<script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
+<script type="text/javascript">
+
+/* 삭제 */
+function jsDelete() {
+	if (confirm("삭제하시겠습니까?")) {
+		action.value = "delete";
+		myFetch("board.do", "detailForm", json => {
+			if (json.status == 0) {
+				// 성공
+				alert("삭제되었습니다.");
+				location = "board.do?action=list";
+			} else {
+				alert(json.statusMessage);
+			}
+		});
+	}
+}
+
+</script>
+
 
 </body>
 </html>
