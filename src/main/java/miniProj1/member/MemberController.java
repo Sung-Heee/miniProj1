@@ -61,4 +61,8 @@ public class MemberController {
 		return map;
 	}
 
+	public Object mypage(HttpServletRequest request, MemberVO memberVO) {
+		return "mypage";
+	}
+
 }

@@ -44,9 +44,7 @@
 </div>
 
 <!-- javascript -->
-<script type="text/javascript" src="<c:url value='resource/js/common.js'/>"></script>
 <script type="text/javascript">
-
 function jsInsert() {
 	if (confirm("등록하시겠습니까?")) {
 		action.value = "insert";
