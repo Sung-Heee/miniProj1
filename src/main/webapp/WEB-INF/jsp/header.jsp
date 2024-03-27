@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <header>
     <div class="header-container">
 
@@ -21,10 +24,30 @@
                 </c:when>
                 <c:otherwise>
                     <!-- 로그인 되어 있는 경우 -->
-                    <a href="member.do?action=logout" class="underline-btn">Logout</a>
+                    <span>${loginVO.userId}님</span>
+                    <a href="javascript:jsLogout()" class="underline-btn">Logout</a>
                     <a href="member.do?action=mypage" class="square-btn">MyPage</a>
                 </c:otherwise>
             </c:choose>
         </div>
     </div>
 </header>
+
+<script type="text/javascript" src="resource/js/common.js"></script>
+<script type="text/javascript">
+
+// 로그아웃 
+function jsLogout() {
+	if (confirm("로그아웃 하시겠습니까?")) {
+		myFetch("member.do", {action:"logout"}, json => {
+			if (json.status == 0) {
+				alert(json.statusMessage);
+				location = "main.jsp";
+			} else {
+				alert(json.statusMessage);
+			}	
+		});
+	}
+}
+
+</script>

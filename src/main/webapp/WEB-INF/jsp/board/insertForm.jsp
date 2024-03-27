@@ -20,7 +20,7 @@
 <form id="insertForm" action="board.do" method="post">
 	<input type="hidden" name="action" id="action" value="">
 	<%-- <input type="hidden" id="bwriter" name="bwriter" value="${loginVO.username}"> --%>
-	<input type="hidden" id="bwriter" name="bwriter" value="hee">
+	<input type="hidden" id="bwriter" name="bwriter" value="${loginVO.userName}">
 	
 <div class="insertForm-inner-container">
 	<div class="insertForm-title-container">
