@@ -10,26 +10,9 @@
 <link rel="stylesheet" type="text/css" href="resource/css/style.css">
 </head>
 <body>
-<!-- 헤더 -->
-<header>
-<div class="header-container">
 
-<div class="logo-container">
-	<a href="main.jsp" class="logo">logo</a>
-</div>
-
-<div class="menu-container">
-	<a href="/" class="menu-btn">Company</a>
-	<a href="board.do?action=list" class="menu-btn">Board</a>
-</div>
-
-<div class="sign-container">
-	<a href="member.do?action=loginForm" class="underline-btn">Login</a>
-	<a href="member.do?action=insertForm" class="square-btn">Sign Up</a>
-</div>
-
-</div>
-</header>
+<!-- 헤더 --> 
+<%@ include file="../header.jsp" %>
 
 <!-- 내용 --> 
 <div class="insertForm-container">
