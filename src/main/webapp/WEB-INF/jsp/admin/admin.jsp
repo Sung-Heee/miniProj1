@@ -2,16 +2,18 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main</title>
+<title>관리자 메인페이지</title>
 <link rel="stylesheet" type="text/css" href="resource/css/style.css">
 </head>
 <body>
 
-<%@ include file="WEB-INF/jsp/header/header.jsp" %>
-
+<!-- 헤더 --> 
+<%@ include file="../header/header.jsp" %>
+      
 </body>
 </html>

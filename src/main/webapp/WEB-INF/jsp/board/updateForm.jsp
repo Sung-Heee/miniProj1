@@ -12,7 +12,7 @@
 <body>
 
 <!-- 헤더 --> 
-<%@ include file="../header.jsp" %>
+<%@ include file="../header/header.jsp" %>
 
 <!-- 내용 -->
 <form id="updateForm" name="updateForm" method="post" action="board.do">

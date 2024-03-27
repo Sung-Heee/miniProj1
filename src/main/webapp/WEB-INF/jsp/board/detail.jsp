@@ -13,7 +13,7 @@
 <body>
 
 <!-- 헤더 --> 
-<%@ include file="../header.jsp" %>
+<%@ include file="../header/header.jsp" %>
 
 <!-- 내용 -->
 <div class="detail-container">
