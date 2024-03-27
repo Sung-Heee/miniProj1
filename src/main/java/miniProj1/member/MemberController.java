@@ -1,7 +1,9 @@
 package miniProj1.member;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,6 +41,18 @@ public class MemberController {
 			return "redirect:member.do?action=loginForm&err=invalidUserId";
 		}
 		return "redirect:board.do?action=list";
+	}
+
+	public Object logout(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<>();
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginVO"); // 로그인 정보 삭제
+		session.invalidate(); // 세션에 저장된 모든 자료 삭제 
+		map.put("status", 0);
+		map.put("statusMessage", "로그아웃 되었습니다.");
+		
+		return map;
 	}
 
 }
