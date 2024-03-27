@@ -7,6 +7,6 @@
 <title>My Page</title>
 </head>
 <body>
-
+<h1>${loginVO.userId}님의 마이페이지</h1>
 </body>
 </html>

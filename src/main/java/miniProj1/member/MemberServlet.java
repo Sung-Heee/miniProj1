@@ -96,6 +96,7 @@ public class MemberServlet extends HttpServlet {
 		case "loginForm" -> memberController.loginForm(request);
 		case "login" -> memberController.login(request, memberVO);
 		case "logout" -> memberController.logout(request);
+		case "mypage" -> memberController.mypage(request, memberVO);
 		default -> "";
 		};
 		
