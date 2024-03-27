@@ -32,11 +32,17 @@ public class MemberController {
 		
 		// 가져온 정보와 사용자가 입력한 비밀번호가 같은지 확인
 		if (memberVO.isEqualPassword(loginVO)) {
+			
 			// 로그인 사용자의 정보를 세션에 기록 
 			HttpSession session = request.getSession();
 			session.setAttribute("loginVO", loginVO);
 			
 			System.out.println("로그인 성공!");
+			
+			// 만약 사용자가 입력한 아이디가 admin 이면 관리자로 로그인 되고 관리자 페이지로 이동 
+			if (memberVO.getUserId().equals("admin")) {
+				return "redirect:member.do?action=list";
+			}
 		} else {
 			return "redirect:member.do?action=loginForm&err=invalidUserId";
 		}

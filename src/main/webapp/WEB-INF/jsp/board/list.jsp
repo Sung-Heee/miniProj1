@@ -13,7 +13,7 @@
 <body>
 
 <!-- 헤더 --> 
-<%@ include file="../header.jsp" %>
+<%@ include file="../header/header.jsp" %>
 
 <div class="list-container">
 <form id="listForm" action="board.do" method="post">
@@ -22,9 +22,14 @@
 </form>
 
 <div class="list-inner-container">
+
+	
 	<div class="list-top-menu">
+		<c:choose>
+		
+		<c:when test="${empty sessionScope.loginVO}">	
 		<div class="insert-container">
-			<a href="board.do?action=insertForm" class="insert-btn">+ 글 작성하기</a>
+			<a href="member.do?action=loginForm" class="insert-btn">+ 글 작성하기</a>
 		</div>
 		<div class="searchbar-container">
 			<div class="searchbar">
@@ -32,6 +37,32 @@
 				<a href="" class="searchbar-a">검색</a>
 			</div>
 		</div>
+		</c:when>
+		
+		<c:otherwise>
+		 
+			<c:if test="${loginVO.userId eq 'admin'}">
+				<div class="searchbar-container">
+					<div class="searchbar">
+						<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
+						<a href="" class="searchbar-a">검색</a>
+					</div>
+				</div>
+			</c:if>
+			<c:if test="${loginVO.userId ne 'admin'}">
+				<div class="insert-container">
+					<a href="board.do?action=insertForm" class="insert-btn">+ 글 작성하기</a>
+				</div>
+				<div class="searchbar-container">
+					<div class="searchbar">
+						<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
+						<a href="" class="searchbar-a">검색</a>
+					</div>
+				</div>
+			</c:if>
+		</c:otherwise>
+		</c:choose>
+		
 	</div>
 	
 	<div class="list">

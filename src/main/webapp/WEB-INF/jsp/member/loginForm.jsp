@@ -19,7 +19,7 @@
 <body>
 
 <!-- 헤더 --> 
-<%@ include file="../header.jsp" %>
+<%@ include file="../header/header.jsp" %>
 
 <div class="login-container">
 <form id="loginForm" action="member.do" method="post" >
@@ -30,14 +30,11 @@
         <input type="submit" value="로그인" class="btn">
         <a href="member.do?action=list" class="btn">취소</a>
     </div>
-    
+             
 </form>
 
 </div>
 
-<script type="text/javascript" src="<c:url value='resource/js/common.js'/>"></script>
-    
-<script type="text/javascript"> </script>
 
 </body>
 </html>
