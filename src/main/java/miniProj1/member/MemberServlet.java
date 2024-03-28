@@ -78,6 +78,7 @@ public class MemberServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String contentType = request.getContentType();
 				
+		System.out.println("contentType :" + contentType);
 		ObjectMapper objectMapper = new ObjectMapper();
 		MemberVO memberVO = null;
 		
