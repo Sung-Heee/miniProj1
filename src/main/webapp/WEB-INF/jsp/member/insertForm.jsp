@@ -63,18 +63,8 @@
 <script type="text/javascript">
 
 const insertForm = document.getElementById("insertForm");
-const userId = document.getElementById("userId");
 const userPassword = document.getElementById("userPassword");
 const userPasswordCheck = document.getElementById("userPasswordCheck");
-const userName = document.getElementById("userName");
-const userAge = document.getElementById("userAge");
-const userAddress = document.getElementById("userAddress");
-const userPhone = document.getElementById("userPhone");
-const userSex = document.querySelector("input[name='userSex']:checked").value;
-const hobbyCheck = document.querySelectorAll("input[name='hobby']:checked");
-const hobbies = Array.from(hobbyCheck).map(checkbox => checkbox.value);
-document.getElementById("hobbies").value = JSON.stringify(hobbies);
-
 
 insertForm.addEventListener("submit", e => {
 	// e라고 써주면 event 객체
@@ -88,8 +78,7 @@ insertForm.addEventListener("submit", e => {
 		userPasswordCheck.focus()
 		return false;
 	} 
-	
-	myFetch("member.do", "insertForm", json => {
+	myFetch("member.do?action=insert", "insertForm", json => {
 		if(json.status == 0) {
 			//성공
 			alert(json.statusMessage);

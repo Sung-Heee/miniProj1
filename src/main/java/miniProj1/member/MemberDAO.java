@@ -68,7 +68,11 @@ public class MemberDAO {
 	            String userSex = rs.getString("user_sex");
 	            String hobbyName = rs.getString("hobbies"); 
 	            
-	            List<String> hobbies = Arrays.asList(hobbyName.split(",")); 
+	            List<String> hobbies = new ArrayList<>();
+
+	            if (hobbyName != null && !hobbyName.isEmpty()) {
+	                hobbies = Arrays.asList(hobbyName.split(","));
+	            }
 	            
 	            MemberVO member = new MemberVO(memberId, userId, userPassword, userName, userAge, userAddress, userPhone, userSex, hobbies);
 	            list.add(member);
@@ -106,36 +110,47 @@ public class MemberDAO {
 	}
 
 	public int insert(MemberVO memberVO) throws SQLException {
-		int updated = 0;
-		
-		memberInsertPstmt.setString(1, memberVO.getUserId());
-		memberInsertPstmt.setString(2, memberVO.getUserPassword());
-		memberInsertPstmt.setString(3, memberVO.getUserName());
-		memberInsertPstmt.setInt(4, memberVO.getUserAge());
-		memberInsertPstmt.setString(5, memberVO.getUserAddress());
-		memberInsertPstmt.setString(6, memberVO.getUserPhone());
-		memberInsertPstmt.setString(7, memberVO.getUserSex());
-		
-		updated = memberInsertPstmt.executeUpdate();
-		
-		if (updated == 1) {
-			List<String> hobbies = memberVO.getHobbies();
-			System.out.println("hobbies :" + hobbies);
-			
-			for (String hobby : hobbies) {
-				System.out.println("hobby :" + hobby);
-				System.out.println("memberId : " + memberVO.getMemberId());
-				memberHobbyPstmt.setString(1, memberVO.getMemberId());
-		        memberHobbyPstmt.setString(2, hobby);
-		        memberHobbyPstmt.executeUpdate();
-		        }
-			
-		    conn.commit();
-		    return 1;
-		} else {
-			return 0;
-		}
-		
+	    int updated = 0;
+
+	    memberInsertPstmt.setString(1, memberVO.getUserId());
+	    memberInsertPstmt.setString(2, memberVO.getUserPassword());
+	    memberInsertPstmt.setString(3, memberVO.getUserName());
+	    memberInsertPstmt.setInt(4, memberVO.getUserAge());
+	    memberInsertPstmt.setString(5, memberVO.getUserAddress());
+	    memberInsertPstmt.setString(6, memberVO.getUserPhone());
+	    memberInsertPstmt.setString(7, memberVO.getUserSex());
+
+	    updated = memberInsertPstmt.executeUpdate();
+
+	    if (updated == 1) {
+	        // 마지막으로 삽입된 AUTO_INCREMENT 값 조회
+	        ResultSet rs = memberInsertPstmt.executeQuery("SELECT LAST_INSERT_ID()");
+	        if (rs.next()) {
+	            String memberId = rs.getString(1); // 첫 번째 컬럼인 memberId 가져오기
+	            memberVO.setMemberId(memberId); // 가져온 memberId를 MemberVO에 설정
+	        } else {
+	            // memberId를 가져오지 못한 경우 예외 처리
+	            throw new SQLException("Failed to get last inserted memberId.");
+	        }
+
+	        List<String> hobbies = memberVO.getHobbies();
+	        System.out.println("hobbies :" + hobbies);
+
+	        for (String hobby : hobbies) {
+	            System.out.println("hobby :" + hobby);
+	            System.out.println("memberId : " + memberVO.getMemberId());
+	            memberHobbyPstmt.setString(1, memberVO.getMemberId()); // 수정된 부분
+	            memberHobbyPstmt.setString(2, hobby);
+	            memberHobbyPstmt.executeUpdate();
+	        }
+
+	        conn.commit();
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+
 	}
+
 
 }

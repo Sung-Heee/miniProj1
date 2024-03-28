@@ -32,12 +32,17 @@ public class MemberVO {
 	public MemberVO(String memberId, String userId, String userPassword, String userName, int userAge, String userAddress, String userPhone, String userSex, List<String> hobbies) {
 	    this(memberId, userId, userPassword, userName, userAge, userAddress, userPhone, userSex, hobbies, "", "", "", "");
 	}
+	// memberId 설정
+	public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
 
 	// 비밀 번호 확인 
 	public boolean isEqualPassword(MemberVO memberVO) {
 		return memberVO != null && userPassword.equals(memberVO.getUserPassword());
 	}
 
+	
 	
 	
 }

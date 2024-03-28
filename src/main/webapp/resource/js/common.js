@@ -1,6 +1,6 @@
 const formToSerialize = (formId) => JSON.stringify([].reduce.call(document.querySelector('#' + formId), (data, element) => {
       //이름이 있는 것을 대상으로함 
-       console.log(element);
+      // console.log(element);
        if (element.name == '') return data;
        //radio와 checkbox인 경우는 반드시 선택된 것만 대상으로함 
        if (element.type == 'radio' || element.type == 'checkbox') {
