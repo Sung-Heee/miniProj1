@@ -17,7 +17,7 @@ public class MemberVO {
 	private int userAge;
 	private String userAddress;
 	private String userPhone;
-	private String userSex;
+	private String userSex; 
 	private List<String> hobbies; 
 	
 	private String userPasswordCheck;
@@ -33,16 +33,6 @@ public class MemberVO {
 	    this(memberId, userId, userPassword, userName, userAge, userAddress, userPhone, userSex, hobbies, "", "", "", "");
 	}
 
-    // 취미 추가 메서드
-    public void addHobby(String hobby) {
-        hobbies.add(hobby);
-    }
-
-    // 취미 가져오는 메서드
-    public List<String> getHobbies() {
-        return hobbies;
-    }
-	
 	// 비밀 번호 확인 
 	public boolean isEqualPassword(MemberVO memberVO) {
 		return memberVO != null && userPassword.equals(memberVO.getUserPassword());

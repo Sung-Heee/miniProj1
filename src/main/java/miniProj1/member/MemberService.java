@@ -15,4 +15,8 @@ public class MemberService {
 		return memberDAO.detail(memberVO);
 	}
 
+	public int insert(MemberVO memberVO) throws SQLException {
+		return memberDAO.insert(memberVO);
+	}
+
 }

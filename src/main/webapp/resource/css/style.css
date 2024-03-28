@@ -27,7 +27,7 @@
 .menu-container {
 	width: 40%;
 	display: flex;
-	justify-content: space-evenly;
+    justify-content: flex-start;
 	font-size: 20px;
 }
 
@@ -43,6 +43,7 @@
 
 .menu-btn {
 	color: #4D4D4D;
+	margin : 0 50px;
 }
 
 .menu-btn:hover {
@@ -392,6 +393,16 @@
 
 /* 사용자 */ 
 .login-container {
+	display : flex;
+	justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+	width : 100%;
+	height : calc(100vh - 110px);
+}
+
+/* 회원가입 */ 
+.member-insertForm-container {
 	display : flex;
 	justify-content: center;
     align-items: center;
