@@ -41,8 +41,8 @@
 	<input type="text" id="userPhone" name="userPhone"><br/>
 	
 	<label>성별 : </label>
-	<input type="radio" id="female" name="userSex" value="Female"> <label for="female">여자</label>
-	<input type="radio" id="male" name="userSex" value="Male"> <label for="male">남자</label><br/>
+	<input type="radio" id="female" name="userSex" value="여자"> <label for="female">여자</label>
+	<input type="radio" id="male" name="userSex" value="남자"> <label for="male">남자</label><br/>
 	
 	
 	<label>취미 : </label>
