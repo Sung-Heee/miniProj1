@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  letter-spacing: 0.8px;
 }
 
 /* 헤더 */
@@ -51,23 +52,32 @@
 }
 
 .underline-btn {
-	color: #4D4D4D;
-	text-decoration: underline;
+	width : 150px;
+	padding : 10px 30px;
+	border-radius : 30px;
+	color: #8B78FF;
+	border: 1px solid #8B78FF;
+	display : flex;
+	justify-content: center;
 }
 
 .underline-btn:hover {
-	color: #8B78FF;
+	background-color: #f3f3f3;
 }
 
 .square-btn {
+	width : 150px;
 	padding : 10px 30px;
-	color: #4D4D4D;
-	border: 1px solid #B3B3B3;
+	border-radius : 30px;
+	background-color : #8B78FF;
+	color: white;
+	border: 1px solid #8B78FF;
+	display : flex;
+	justify-content: center;
 }
 
 .square-btn:hover {
-	color: #8B78FF;
-	border: 1px solid #8B78FF;
+	background-color: #7663EF;
 }
 
 /* 리스트 페이지 */
@@ -100,6 +110,13 @@
 	background-color: #8B78FF;
 	padding : 15px 20px;
 	font-size : 18px;
+	width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.insert-container:hover {
+	background-color: #7663EF;
 }
 
 .insert-btn {
@@ -150,12 +167,16 @@
 .list-content, .list-top-content {
 	display : flex;
 	align-items: center;
-	height : 15%;
-	font-size: 20px;
+	height : 80px;
 	border-bottom : 1px solid #D7D7D7;
 }
 
+.list-content {
+	font-size : 17px;
+}
+
 .list-top-content {
+	font-size: 20px;
 	border-bottom : 2px solid black;
 }
 
