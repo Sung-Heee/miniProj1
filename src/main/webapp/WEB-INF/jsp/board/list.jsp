@@ -50,14 +50,14 @@
 				</div>
 			</c:if>
 			<c:if test="${loginVO.userId ne 'admin'}">
-				<div class="insert-container">
-					<a href="board.do?action=insertForm" class="insert-btn">+ 글 작성하기</a>
-				</div>
 				<div class="searchbar-container">
 					<div class="searchbar">
 						<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
 						<a href="" class="searchbar-a">검색</a>
 					</div>
+				</div>
+				<div class="insert-container">
+					<a href="board.do?action=insertForm" class="insert-btn">+ 글 작성하기</a>
 				</div>
 			</c:if>
 		</c:otherwise>
