@@ -65,4 +65,29 @@ public class MemberController {
 		return "mypage";
 	}
 
+	public Object insertForm(HttpServletRequest request, MemberVO memberVO) {
+		return "insertForm";
+	}
+
+	public Object insert(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		Map<String, Object> map = new HashMap<>();
+		
+		if (memberVO.getUserId() == null || memberVO.getUserId().length() == 0) {
+			map.put("status", -1);
+			map.put("statusMessage", "Null 이거나 길이가 0인 아이디는 사용할 수 없습니다.");
+		} else {
+			int updated = memberService.insert(memberVO);
+			
+			if (updated == 1) {
+				map.put("status", 0);
+				map.put("statusMessage", "회원가입이 완료되었습니다.");
+			} else {
+				map.put("status", -1);
+				map.put("statusMessage", "회원가입 실패! 다시 시도해주세요.");
+			}
+		}
+		
+		return map;
+	}
+
 }

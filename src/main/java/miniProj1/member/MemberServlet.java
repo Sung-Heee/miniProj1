@@ -93,6 +93,8 @@ public class MemberServlet extends HttpServlet {
 		
 		Object result = switch (action) {
 		case "list" -> memberController.list(request, memberVO); 
+		case "insertForm" -> memberController.insertForm(request, memberVO);
+		case "insert" -> memberController.insert(request, memberVO);
 		case "loginForm" -> memberController.loginForm(request);
 		case "login" -> memberController.login(request, memberVO);
 		case "logout" -> memberController.logout(request);
