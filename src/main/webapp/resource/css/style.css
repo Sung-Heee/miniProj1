@@ -539,6 +539,9 @@
 }
 
 .mypage-modify-btn  {
+	cursor : pointer;
+	background-color:transparent;
+	font-size : 20px;
 	color : #8B78FF;
 	width : 150px;
 	height : 70%;
