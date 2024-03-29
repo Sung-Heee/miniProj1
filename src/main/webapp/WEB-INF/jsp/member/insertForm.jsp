@@ -19,35 +19,35 @@
 	<input type="hidden" name="action" value="insert">
 	
 	<label>아이디 : </label>
-	<input type="text" id="userId" name="userId"> 
+	<input type="text" id="userId" name="userId" required> 
 	<input type="button" id="duplicateId" value="중복확인"><br/>
 	
 	<label>비밀번호 : </label>
-	<input type="password" id="userPassword" name="userPassword"><br/>
+	<input type="password" id="userPassword" name="userPassword" required><br/>
 	
 	<label>비밀번호 확인 : </label>
-	<input type="password" id="userPasswordCheck" name="userPasswordCheck"><br/>
+	<input type="password" id="userPasswordCheck" name="userPasswordCheck" required><br/>
 	
 	<label>이름 : </label>
-	<input type="text" id="userName" name="userName"><br/>
+	<input type="text" id="userName" name="userName" required><br/>
 	
 	<label>나이 : </label>
-	<input type="number" id="userAge" name="userAge"><br/>
+	<input type="number" id="userAge" name="userAge" required><br/>
 	
 	<label>주소 : </label>
-	<input type="text" id="userAddress" name="userAddress"><br/>
+	<input type="text" id="userAddress" name="userAddress" required><br/>
 	
 	<label>핸드폰 번호 : </label>
-	<input type="text" id="userPhone" name="userPhone"><br/>
+	<input type="text" id="userPhone" name="userPhone" required><br/>
 	
 	<label>성별 : </label>
-	<input type="radio" id="female" name="userSex" value="여자"> <label for="female">여자</label>
-	<input type="radio" id="male" name="userSex" value="남자"> <label for="male">남자</label><br/>
+	<input type="radio" id="female" name="userSex" value="여자" required> <label for="female">여자</label>
+	<input type="radio" id="male" name="userSex" value="남자" required> <label for="male">남자</label><br/>
 	
 	
 	<label>취미 : </label>
 	<c:forEach var="hobby" items="${hobbyList}">
-		<input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}"> 
+		<input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" required value="${hobby.hobbyName}"> 
 		<label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>
 	</c:forEach>	
 	<br/><br/>
