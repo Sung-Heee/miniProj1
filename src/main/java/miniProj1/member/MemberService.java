@@ -23,4 +23,12 @@ public class MemberService {
 		return memberDAO.withdraw(memberVO);
 	}
 
+	public int update(MemberVO memberVO) throws SQLException {
+	    return memberDAO.update(memberVO);
+	}
+
+	public List<HobbyVO> getHobby() throws SQLException {
+	    return memberDAO.getHobby();
+	}
+
 }

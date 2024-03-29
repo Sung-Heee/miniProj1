@@ -32,56 +32,34 @@
 				</div>
 				<div class="mypage-area">
 					<div class="mypage-title-area">이름</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="text" id="userName" name="userName" value="${loginVO.userName}"></div>
-				</div>
-			</div>
-			<div class="mypage-content">
-				<div class="mypage-area">
-					<div class="mypage-title-area">비밀번호</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="password" id=userPassword" name="userPassword"></div>
-				</div>
-				<div class="mypage-area">
-					<div class="mypage-title-area">비밀번호 확인</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="password" id=userPasswordCheck" name="userPasswordCheck"></div>
+					<div class="mypage-content-area">${loginVO.userName}</div>
 				</div>
 			</div>
 			<div class="mypage-content">
 				<div class="mypage-area">
 					<div class="mypage-title-area">나이</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="number" id="userAge" name="userAge" value="${loginVO.userAge}"></div>
+					<div class="mypage-content-area">${loginVO.userAge}</div>
 				</div>
 				<div class="mypage-area">
 					<div class="mypage-title-area">성별</div>
-					<div class="mypage-content-area">
-						<input type="radio" id="female" name="userSex" value="여자"> <label for="female">여자</label>
-						<input type="radio" id="male" name="userSex" value="남자"> <label for="male">남자</label>
-					</div>
+					<div class="mypage-content-area">${loginVO.userSex}</div>
 				</div>
 			</div>
 			<div class="mypage-content">
 				<div class="mypage-area">
 					<div class="mypage-title-area">주소</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="text" id="userAddress" name="userAddress" value="${loginVO.userAddress}"></div>
+					<div class="mypage-content-area">${loginVO.userAddress}</div>
 				</div>
 				<div class="mypage-area">
 					<div class="mypage-title-area">핸드폰 번호</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="text" id="userPhone" name="userPhone" value="${loginVO.userPhone}"></div>
+					<div class="mypage-content-area">${loginVO.userPhone}</div>
 				</div>
 			</div>
 			<div class="mypage-content">
-				<div class="mypage-area">
-					<div class="mypage-title-area">취미</div>
-					<div class="mypage-content-area">
-						<input type="checkbox" id="hobby1" name="hobbies" value="자전거"> 
-						<label for="hobby1">자전거</label>
-						<input type="checkbox" id="hobby2" name="hobbies" value="영화"> 
-						<label for="hobby2">영화</label>
-						<input type="checkbox" id="hobby3" name="hobbies" value="음악"> 
-						<label for="hobby3">음악</label>
-						<input type="checkbox" id="hobby4" name="hobbies" value="수영"> 
-						<label for="hobby4">수영</label>
-					</div>
-				</div>
+			    <div class="mypage-area">
+			        <div class="mypage-title-area">취미</div>
+			        <div class="mypage-content-area">${loginVO.hobbies}</div>
+			    </div>
 			</div>
 		</div>
 		<div class="mypage-btn-container">

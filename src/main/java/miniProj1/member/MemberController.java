@@ -61,11 +61,15 @@ public class MemberController {
 		return map;
 	}
 
-	public Object mypage(HttpServletRequest request, MemberVO memberVO) {
+	public Object mypage(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		List<HobbyVO> hobbyList = memberService.getHobby();
+	    request.setAttribute("hobbyList", hobbyList);
 		return "mypage";
 	}
 
-	public Object insertForm(HttpServletRequest request, MemberVO memberVO) {
+	public Object insertForm(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		List<HobbyVO> hobbyList = memberService.getHobby();
+	    request.setAttribute("hobbyList", hobbyList);
 		return "insertForm";
 	}
 
@@ -104,6 +108,34 @@ public class MemberController {
 		} else {
 			map.put("status", -1);
 			map.put("statusMessage", "탈퇴 실패! 다시 시도해주세요.");
+		}
+		
+		return map;
+	}
+
+	public Object updateForm(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		List<HobbyVO> hobbyList = memberService.getHobby();
+	    request.setAttribute("hobbyList", hobbyList);
+		
+		return "updateForm";
+	}
+
+	public Object update(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		
+		int updated = memberService.update(memberVO);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		if (updated == 1) {
+			// 업데이트 완료하고 세션 다시 기록 
+			HttpSession session = request.getSession();
+			session.setAttribute("loginVO", memberVO);
+
+			map.put("status", 0);
+			map.put("statusMessage", "수정되었습니다.");
+		} else {
+			map.put("status", -1);
+			map.put("statusMessage", "수정 실패! 다시 시도해주세요.");
 		}
 		
 		return map;
