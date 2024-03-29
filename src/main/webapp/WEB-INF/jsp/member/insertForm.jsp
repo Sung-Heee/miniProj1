@@ -62,10 +62,18 @@ const insertForm = document.getElementById("insertForm");
 const userPassword = document.getElementById("userPassword");
 const userPasswordCheck = document.getElementById("userPasswordCheck");
 
+// 중복 체크 여부를 확인하는 
+let validUserId = "";
+
 insertForm.addEventListener("submit", e => {
 	// e라고 써주면 event 객체
 	// 서버에 form data를 전송하지 않는다. 
     e.preventDefault();
+	
+	if (validUserId == "" || userId.value != validUserId) {
+		alert("아이디 중복확인 해주세요.");
+		return false;
+	}
 	
 	if (userPassword.value != userPasswordCheck.value) {
    		alert("비밀번호가 일치하지 않습니다.");
@@ -84,6 +92,37 @@ insertForm.addEventListener("submit", e => {
 		}
 	});
 	 
+});
+
+const duplicateId = document.getElementById("duplicateId");
+duplicateId.addEventListener("click", () => {
+	const userId = document.getElementById("userId");
+	
+	// 아이디 미입력 
+	if (userId.value == "") {
+		alert("아이디를 입력해주세요.");
+		userId.focus();
+		return;
+	}
+	
+	const param = {
+		action : "existUserId",
+		userId : userId.value
+	}
+	
+	fetch("member.do", {
+		method : "POST",
+		body : JSON.stringify(param),
+		headers : {"Content-type" : "application/json; charset=utf-8"}
+	}).then(res => res.json()).then(json => {
+		if (json.existUser == true) {
+			alert(json.statusMessage);
+			validUserId = "";
+		} else {
+			alert(json.statusMessage);
+			validUserId = userId.value;
+		}
+	})
 });
 </script>
 
