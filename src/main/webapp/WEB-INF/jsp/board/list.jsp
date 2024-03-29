@@ -16,11 +16,6 @@
 <%@ include file="../header/header.jsp" %>
 
 <div class="list-container">
-<form id="listForm" action="board.do" method="post">
-    <input type="hidden" id="action" name="action" value="view">
-    <input type="hidden" id="bno" name="bno" >
-</form>
-
 <div class="list-inner-container">
 
 	
@@ -28,9 +23,6 @@
 		<c:choose>
 		
 		<c:when test="${empty sessionScope.loginVO}">	
-		<div class="insert-container">
-			<a href="member.do?action=loginForm" class="insert-btn">+ 글 작성하기</a>
-		</div>
 		<div class="searchbar-container">
 			<div class="searchbar">
 				<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
@@ -78,19 +70,43 @@
         <div class="title-area"><a href="board.do?action=detail&bno=${board.bno}" class="title-a">${board.btitle}</a></div> 
         <div class="writer-area">${board.bwriter}</div> 
         <div class="date-area">${board.bdate}</div> 
+        <c:if test="${loginVO.userId eq 'admin'}">
+        	<div class="admin-delete-btn"><a href="javascript:jsDelete(${board.bno})">삭제</a></div>
+        </c:if>
 	</div>	
     </c:forEach>
 
 </div>
 </div>
 
-<script>
+<form id="listForm" name="listForm" action="board.do" method="post">
+    <input type="hidden" id="action" name="action" value="">
+    <input type="hidden" id="bno" name="bno" value="">
+</form>
+
+
+<script type="text/javascript">
 function jsView(bno) {
 	//인자의 값을 설정한다 
 	bno.value = bno;
 	
 	//양식을 통해서 서버의 URL로 값을 전달한다
 	listForm.submit();
+} 
+
+function jsDelete(bno) {
+	if(confirm("게시물을 삭제하시겠습니까?")) {
+		action.value = "delete";
+		document.getElementById("bno").value = bno;
+		myFetch("board.do", "listForm", json => {
+			if (json.status == 0) {
+				alert(json.statusMessage);
+				location="board.do?action=list";
+			} else {
+				alert(json.statusMessage);		
+			}
+		})
+	}
 }
 </script>      
 </body>
