@@ -78,7 +78,7 @@ insertForm.addEventListener("submit", e => {
 		if(json.status == 0) {
 			//성공
 			alert(json.statusMessage);
-			location = "member.do?action=list";
+			location = "member.do?action=loginForm";
 		} else {
 			alert(json.statusMessage);
 		}

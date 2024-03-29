@@ -180,7 +180,12 @@
 	border-bottom : 2px solid black;
 }
 
-.no-area, .writer-area, .date-area {
+.no-area {
+	width : 10%;
+	display : flex;
+	justify-content: center;
+}
+ .writer-area, .date-area {
 	width : 20%;
 	display : flex;
 	justify-content: center;
@@ -190,6 +195,12 @@
  	width: 40%;	
  	display : flex;
  	justify-content: center;
+}
+
+.admin-delete-btn {
+	width : 10%;
+	display : flex;
+ 	justify-content: center;	
 }
 
 .title-a {

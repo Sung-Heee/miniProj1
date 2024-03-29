@@ -21,7 +21,7 @@ import miniProj1.member.MemberVO;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("*.do")
+// @WebFilter("*.do")
 public class LoginFilter extends HttpFilter implements Filter {
        
     /**
