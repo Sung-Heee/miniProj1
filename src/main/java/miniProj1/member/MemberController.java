@@ -141,4 +141,20 @@ public class MemberController {
 		return map;
 	}
 
+	public Object existUserId(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		MemberVO existUser = memberService.detail(memberVO);
+		
+		Map<String, Object> map = new HashMap<>();
+
+		if (existUser == null) {
+			map.put("existUser", false);
+			map.put("statusMessage", "사용 가능한 아이디입니다.");
+		} else {
+			map.put("existUser", true);
+			map.put("statusMessage", "이미 사용중인 아이디입니다.");
+		}
+		
+		return map;
+	}
+
 }
