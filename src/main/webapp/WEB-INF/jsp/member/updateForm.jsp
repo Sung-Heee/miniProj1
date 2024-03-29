@@ -40,11 +40,11 @@
 			<div class="mypage-content">
 				<div class="mypage-area">
 					<div class="mypage-title-area">비밀번호</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="password" id=userPassword" name="userPassword"></div>
+					<div class="mypage-content-area"><input class="mypage-input" type="password" id="userPassword" name="userPassword" required></div>
 				</div>
 				<div class="mypage-area">
 					<div class="mypage-title-area">비밀번호 확인</div>
-					<div class="mypage-content-area"><input class="mypage-input" type="password" id=userPasswordCheck" name="userPasswordCheck"></div>
+					<div class="mypage-content-area"><input class="mypage-input" type="password" id="userPasswordCheck" name="userPasswordCheck" required></div>
 				</div>
 			</div>
 			<div class="mypage-content">
@@ -75,8 +75,10 @@
 			        <div class="mypage-title-area">취미</div>
 			        <div class="mypage-content-area">
 			        	 <c:forEach var="hobby" items="${hobbyList}">
+			        	 <div class="input-checkbox">
 			                <input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}" <c:if test="${loginVO.hobbies.contains(hobby.hobbyName)}">checked</c:if>> 
 			                <label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>
+			             </div>
 			            </c:forEach>		        				     
                     </div>
 			    </div>
@@ -84,7 +86,7 @@
 		</div>
 		<div class="mypage-btn-container">
 			<div class="mypage-btn-div">
-				<a href="javascript:jsUpdate()" class="mypage-modify-btn">수정하기</a>
+				<input type="submit" class="mypage-modify-btn" value="수정하기">
 			</div>
 		</div>
 	</div>
@@ -97,7 +99,24 @@
 
 <script type="text/javascript">
 
-function jsUpdate() {
+const userPassword = document.getElementById("userPassword");
+const userPasswordCheck = document.getElementById("userPasswordCheck");
+
+document.getElementById("mypageUpdateForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    if (userPassword.value != userPasswordCheck.value) {
+   		alert("비밀번호가 일치하지 않습니다.");
+		// 비밀번호가 잘못되면 값 비워주고 focus()
+		userPasswordCheck.value = "";
+		userPasswordCheck.focus()
+		return false;
+	}
+    
+    jsUpdate(); // 폼 제출 대신 jsUpdate() 함수 호출
+});
+
+function jsUpdate() {	
 	if (confirm("회원 정보를 수정하시겠습니까?")) {
 		action.value = "update";
 		myFetch("member.do", "mypageUpdateForm", json => {
