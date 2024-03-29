@@ -61,7 +61,7 @@
 	justify-content: center;
 }
 
-.underline-btn:hover {
+.underline-btn:hover, .mypage-modify-btn:hover {
 	background-color: #f3f3f3;
 }
 
@@ -76,7 +76,7 @@
 	justify-content: center;
 }
 
-.square-btn:hover {
+.square-btn:hover , .mypage-withdraw-btn:hover {
 	background-color: #7663EF;
 }
 
@@ -430,6 +430,123 @@
     margin-top: 110px;
 	width : 100%;
 	height : calc(100vh - 110px);
+}
+
+/* 마이페이지  */
+.mypage-container {
+	display : flex;
+	justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+	width : 100%;
+	height : calc(100vh - 110px);
+}
+
+.mypage-inner-container {
+	width : 70vw;
+	height : 70vh;
+}
+
+.mypage-top-container{
+	width : 100%;
+	height: 15%;
+	border-bottom : 3px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-userid {
+	height : 70%;
+	padding : 10px 100px;
+	font-size : 35px;
+	background-color: #8B78FF;
+	color : white;
+	border-radius:50px;
+	display: flex;
+	align-items: center;
+}
+
+.mypage-content-container {
+	height : 75%;
+	display : flex;
+	flex-direction: column;
+}
+
+.mypage-content {
+	display : flex;
+	width : 100%;
+	height : 20%;
+	align-items: center;
+}
+
+.mypage-area {
+	width : 50%;
+	height : 100%;
+	display : flex;	
+	font-size : 20px;
+	align-items: center;
+}
+
+.mypage-content-area > .mypage-input {
+	border : none;
+	background-color: #F0F0F0;
+	font-size : 20px;
+	width : 100%;
+}
+
+.mypage-title-area {
+	padding : 0 5%;
+	width : 30%;	
+	height : 100%;
+	display: flex;
+    align-items: center;
+}
+
+.mypage-content-area {
+	width : 70%;
+	height : 50%;
+	display: flex;
+    align-items: center;
+	background-color: #F0F0F0;
+	border-radius : 50px;
+	padding : 0 20px;
+}
+
+.mypage-btn-container {
+	width : 100%;
+	height : 10%;
+	display : flex;
+	justify-content: flex-end;
+}
+
+.mypage-btn-div {
+	font-size : 20px;
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.mypage-modify-btn  {
+	color : #8B78FF;
+	width : 150px;
+	height : 70%;
+	border-radius: 50px;
+	border : 1px solid #8B78FF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mypage-withdraw-btn {
+	width : 150px;
+	height : 70%;
+	background-color: #8B78FF;
+	border-radius: 50px;
+	color : white;
+	display: flex;
+	align-items: center;
+	margin-left : 10px;
+	justify-content: center;
 }
 
 a {
