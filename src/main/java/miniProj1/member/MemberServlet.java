@@ -81,6 +81,7 @@ public class MemberServlet extends HttpServlet {
 		System.out.println("contentType :" + contentType);
 		ObjectMapper objectMapper = new ObjectMapper();
 		MemberVO memberVO = null;
+		HobbyVO hobbyVO = new HobbyVO();
 		
 		if (contentType == null || contentType.startsWith("application/x-www-form-urlencoded")) {
 			memberVO = objectMapper.convertValue(convertMap(request.getParameterMap()), MemberVO.class);
@@ -101,6 +102,8 @@ public class MemberServlet extends HttpServlet {
 		case "logout" -> memberController.logout(request);
 		case "mypage" -> memberController.mypage(request, memberVO);
 		case "withdraw" -> memberController.withdraw(request, memberVO);
+		case "updateForm" -> memberController.updateForm(request, memberVO);
+		case "update" -> memberController.update(request, memberVO);
 		default -> "";
 		};
 		

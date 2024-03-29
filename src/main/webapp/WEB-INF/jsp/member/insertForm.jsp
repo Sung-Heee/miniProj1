@@ -46,14 +46,10 @@
 	
 	
 	<label>취미 : </label>
-	<input type="checkbox" id="hobby1" name="hobbies" value="자전거"> 
-	<label for="hobby1">자전거</label>
-	<input type="checkbox" id="hobby2" name="hobbies" value="영화"> 
-	<label for="hobby2">영화</label>
-	<input type="checkbox" id="hobby3" name="hobbies" value="음악"> 
-	<label for="hobby3">음악</label>
-	<input type="checkbox" id="hobby4" name="hobbies" value="수영"> 
-	<label for="hobby4">수영</label>
+	<c:forEach var="hobby" items="${hobbyList}">
+		<input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}"> 
+		<label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>
+	</c:forEach>	
 	<br/><br/>
  	
  	<input class="btn" type="submit" value="등록" >

@@ -18,10 +18,16 @@ public class MemberDAO {
 	private static PreparedStatement memberDetailPstmt = null;
 	// 회원가입
 	private static PreparedStatement memberInsertPstmt = null;
-	// 취미
+	// 취미 삽입 
 	private static PreparedStatement memberHobbyPstmt = null;
 	// 탈퇴  
-    private static PreparedStatement memberWithdraw = null;
+    private static PreparedStatement memberWithdrawPstmt = null;
+    // 수정   (취미 삭제)
+    private static PreparedStatement memberDeleteHobbyPstmt = null;
+    // 회원 정보 수정 
+    private static PreparedStatement memberUpdatePstmt = null;
+    // 취미 가져오기
+    private static PreparedStatement hobbyPstmt = null;
 	
 	    
 	static {
@@ -42,7 +48,10 @@ public class MemberDAO {
             memberDetailPstmt = conn.prepareStatement("SELECT M.member_id, M.user_id, M.user_password, M.user_name, M.user_age, M.user_address, M.user_phone, M.user_sex, GROUP_CONCAT(H.hobby_name) AS hobbies FROM TB_MEMBER M LEFT JOIN TB_MEMBER_HOBBY MH ON M.member_id = MH.member_id LEFT JOIN TB_HOBBY H ON MH.hobby_id = H.hobby_id WHERE user_id = ? GROUP BY M.member_id");
             memberInsertPstmt = conn.prepareStatement("INSERT INTO tb_member (user_id, user_password, user_name, user_age, user_address, user_phone, user_sex) VALUES (?, ?, ?, ?, ?, ?, ?)");
             memberHobbyPstmt =  conn.prepareStatement("INSERT INTO tb_member_hobby (member_id, hobby_id) VALUES (?, (SELECT hobby_id FROM tb_hobby WHERE hobby_name = ?))");
-            memberWithdraw = conn.prepareStatement("DELETE FROM tb_member WHERE member_id = ?");
+            memberWithdrawPstmt = conn.prepareStatement("DELETE FROM tb_member WHERE member_id = ?");
+            memberDeleteHobbyPstmt = conn.prepareStatement("DELETE FROM tb_member_hobby WHERE member_id = ?");
+            memberUpdatePstmt = conn.prepareStatement("UPDATE tb_member SET user_id=?, user_password=?, user_name=?, user_age=?, user_address=?, user_phone=?, user_sex=? WHERE member_id=?");
+            hobbyPstmt = conn.prepareStatement("SELECT * FROM TB_HOBBY");
             
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -160,12 +169,70 @@ public class MemberDAO {
 	public int withdraw(MemberVO memberVO) throws SQLException {
 		int updated = 0;
 		
-		memberWithdraw.setString(1, memberVO.getMemberId());
+		memberWithdrawPstmt.setString(1, memberVO.getMemberId());
 		
-		updated = memberWithdraw.executeUpdate();
+		updated = memberWithdrawPstmt.executeUpdate();
 		
 		conn.commit();
 		return updated;
 	}
+
+	public int update(MemberVO memberVO) throws SQLException {
+	    int updated = 0;
+ 
+	    // 우선 취미 정보 삭제
+	    memberDeleteHobbyPstmt.setString(1, memberVO.getMemberId());
+	    int hobbyDeleteUpdated = memberDeleteHobbyPstmt.executeUpdate();
+
+	    System.out.println("hobbyDeleteUpdated " + hobbyDeleteUpdated);
+	    if (hobbyDeleteUpdated >= 1) {
+	    	System.out.println("여기까지 오니 ");
+	        // 회원 정보 업데이트
+	        memberUpdatePstmt.setString(1, memberVO.getUserId());
+	        memberUpdatePstmt.setString(2, memberVO.getUserPassword());
+	        memberUpdatePstmt.setString(3, memberVO.getUserName());
+	        memberUpdatePstmt.setInt(4, memberVO.getUserAge());
+	        memberUpdatePstmt.setString(5, memberVO.getUserAddress());
+	        memberUpdatePstmt.setString(6, memberVO.getUserPhone());
+	        memberUpdatePstmt.setString(7, memberVO.getUserSex());
+	        memberUpdatePstmt.setString(8, memberVO.getMemberId()); // 회원 아이디
+
+	        updated = memberUpdatePstmt.executeUpdate();
+
+	        if (updated >= 1) {
+	            // 새롭게 취미 정보 삽입
+	            List<String> hobbies = memberVO.getHobbies();
+	            for (String hobby : hobbies) {
+	            	memberHobbyPstmt.setString(1, memberVO.getMemberId()); // 회원 아이디
+	            	memberHobbyPstmt.setString(2, hobby);
+	            	memberHobbyPstmt.executeUpdate();
+	            }
+	            conn.commit();
+	            return 1;
+	        } else {
+	            return 0;
+	        }
+	    } else {
+	    	System.out.println("여기까지는 왔니 ");
+	        return 0; // 취미 삭제 실패
+	    }
+	}
+
+	public List<HobbyVO> getHobby() throws SQLException {
+		List<HobbyVO> hobbyList  = new ArrayList<>();
+		
+		ResultSet rs = null;
+		
+		rs = hobbyPstmt.executeQuery();
+		
+		while(rs.next()) {
+			String hobbyId = rs.getString("hobby_id");
+			String hobbyName = rs.getString("hobby_name");
+			hobbyList.add(new HobbyVO(hobbyId, hobbyName));
+		}
+		rs.close();
+		return hobbyList;
+	}
+
 
 }

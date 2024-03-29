@@ -39,7 +39,7 @@
    		내용
    		</div> 
    		
-		<textarea id="bcontent" name="bcontent" class="content-input" value="">${board.bcontent}</textarea>
+		<textarea id="bcontent" name="bcontent" class="content-input" >${board.bcontent}</textarea>
    		
     </div>
     
