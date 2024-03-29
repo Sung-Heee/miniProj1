@@ -19,4 +19,8 @@ public class MemberService {
 		return memberDAO.insert(memberVO);
 	}
 
+	public int withdraw(MemberVO memberVO) throws SQLException {
+		return memberDAO.withdraw(memberVO);
+	}
+
 }

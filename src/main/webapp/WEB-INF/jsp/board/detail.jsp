@@ -80,7 +80,7 @@
 </form>
 
 <!-- javascript -->
-<script type="text/javascript" src="<c:url value='resource/js/common.js'/>"></script>
+
 <script type="text/javascript">
 
 /* 삭제 */

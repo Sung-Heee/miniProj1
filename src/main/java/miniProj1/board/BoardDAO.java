@@ -20,7 +20,7 @@ public class BoardDAO {
     // insert 
     private static PreparedStatement boardInsertPstmt = null;
     // update
-    private static PreparedStatement boardUpdatePstmt = null;
+    private static PreparedStatement boardUpdatePstmt = null; 
 
     static {
     	try {

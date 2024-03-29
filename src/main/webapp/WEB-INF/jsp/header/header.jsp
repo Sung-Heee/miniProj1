@@ -39,7 +39,7 @@
                     </c:if>
                     <c:if test="${loginVO.userId ne 'admin'}">
                         <a href="javascript:jsLogout()" class="underline-btn">Logout</a>
-                        <a href="member.do?action=mypage" class="square-btn">MyPage</a>
+                        <a href="member.do?action=mypage&memberId=${loginVO.memberId}" class="square-btn">MyPage</a>
                     </c:if>
                 </c:otherwise>
             </c:choose>

@@ -90,4 +90,23 @@ public class MemberController {
 		return map;
 	}
 
+	public Object withdraw(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		int updated = memberService.withdraw(memberVO);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		if (updated == 1) {
+			HttpSession session = request.getSession();
+			session.removeAttribute("loginVO"); // 로그인 정보 삭제
+			session.invalidate(); // 세션에 저장된 모든 자료 삭제 
+			map.put("status", 0);
+			map.put("statusMessage", "탈퇴 성공!");
+		} else {
+			map.put("status", -1);
+			map.put("statusMessage", "탈퇴 실패! 다시 시도해주세요.");
+		}
+		
+		return map;
+	}
+
 }
