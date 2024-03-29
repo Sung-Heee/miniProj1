@@ -20,6 +20,8 @@ public class MemberDAO {
 	private static PreparedStatement memberInsertPstmt = null;
 	// 취미
 	private static PreparedStatement memberHobbyPstmt = null;
+	// 탈퇴  
+    private static PreparedStatement memberWithdraw = null;
 	
 	    
 	static {
@@ -40,6 +42,7 @@ public class MemberDAO {
             memberDetailPstmt = conn.prepareStatement("SELECT M.member_id, M.user_id, M.user_password, M.user_name, M.user_age, M.user_address, M.user_phone, M.user_sex, GROUP_CONCAT(H.hobby_name) AS hobbies FROM TB_MEMBER M LEFT JOIN TB_MEMBER_HOBBY MH ON M.member_id = MH.member_id LEFT JOIN TB_HOBBY H ON MH.hobby_id = H.hobby_id WHERE user_id = ? GROUP BY M.member_id");
             memberInsertPstmt = conn.prepareStatement("INSERT INTO tb_member (user_id, user_password, user_name, user_age, user_address, user_phone, user_sex) VALUES (?, ?, ?, ?, ?, ?, ?)");
             memberHobbyPstmt =  conn.prepareStatement("INSERT INTO tb_member_hobby (member_id, hobby_id) VALUES (?, (SELECT hobby_id FROM tb_hobby WHERE hobby_name = ?))");
+            memberWithdraw = conn.prepareStatement("DELETE FROM tb_member WHERE member_id = ?");
             
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -79,6 +82,7 @@ public class MemberDAO {
 	        }
 		
 		rs.close();
+		conn.commit();
 	    return list;
 	}
 
@@ -106,6 +110,7 @@ public class MemberDAO {
 		}
 		
 		rs.close();
+		conn.commit();
 		return member;
 	}
 
@@ -152,5 +157,15 @@ public class MemberDAO {
 
 	}
 
+	public int withdraw(MemberVO memberVO) throws SQLException {
+		int updated = 0;
+		
+		memberWithdraw.setString(1, memberVO.getMemberId());
+		
+		updated = memberWithdraw.executeUpdate();
+		
+		conn.commit();
+		return updated;
+	}
 
 }

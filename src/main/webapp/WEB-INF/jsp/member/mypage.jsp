@@ -86,11 +86,34 @@
 		</div>
 		<div class="mypage-btn-container">
 			<div class="mypage-btn-div">
-				<a class="mypage-modify-btn">수정</a>
-				<a class="mypage-withdraw-btn">탈퇴</a>
+				<a href="member.do?action=updateForm&memberId=${loginVO.memberId}" class="mypage-modify-btn">수정</a>
+				<a href="javascript:jsWithdraw()" class="mypage-withdraw-btn">탈퇴</a>
 			</div>
 		</div>
 	</div>
 </div>
+
+<form id = "mypageForm" name="mypageForm" method = "post" action="member.do">
+	<input type="hidden" id="action" name="action" value="">
+	<input type="hidden" id="memberId" name="memberId" value="${loginVO.memberId}">
+</form>
+
+<script type="text/javascript">
+
+function jsWithdraw() {
+	if (confirm("탈퇴하시겠습니까?")) {
+		action.value = "withdraw";
+		myFetch("member.do", "mypageForm", json => {
+			if (json.status == 0) {
+				alert(json.statusMessage);
+				location = "main.jsp";
+			} else {
+				alert(json.statusMessage);
+			}
+		});
+	}
+}
+</script>
+
 </body>
 </html>
