@@ -65,11 +65,20 @@
     	${board.bdate}
     	</div>
     </div>
-    
+    <c:choose>
+     <c:when test="${loginVO.userId eq 'admin'}">
     <div class="detail-btn-container">
     	<a href="board.do?action=updateForm&bno=${board.bno}" class="modify-btn">수정</a>
     	<a href="javascript:jsDelete()" class="delete-btn">삭제</a>
     </div>
+    </c:when>
+    <c:when test="${loginVO.userId eq board.bwriter}">
+     <div class="detail-btn-container">
+    	<a href="board.do?action=updateForm&bno=${board.bno}" class="modify-btn">수정</a>
+    	<a href="javascript:jsDelete()" class="delete-btn">삭제</a>
+    </div>
+    </c:when>
+    </c:choose>
 </div>
 </div>
 </div>
