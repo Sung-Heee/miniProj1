@@ -157,4 +157,20 @@ public class MemberController {
 		return map;
 	}
 
+	public Object delete(HttpServletRequest request, MemberVO memberVO) throws SQLException {
+		int updated = memberService.delete(memberVO);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		if (updated == 1) {
+			map.put("status", 0);
+			map.put("statusMessage", "사용자가 삭제되었습니다.");
+		} else {
+			map.put("status", -1);
+			map.put("statusMessage", "사용자 삭제 실패하였습니다.");
+		}
+		
+		return map;
+	}
+
 }

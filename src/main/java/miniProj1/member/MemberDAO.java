@@ -30,6 +30,7 @@ public class MemberDAO {
     private static PreparedStatement hobbyPstmt = null;
     // 멤버 이름 검색 
     private static PreparedStatement memberSearchPstmt = null;
+    
 	
 	    
 	static {

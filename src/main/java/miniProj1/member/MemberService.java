@@ -31,4 +31,8 @@ public class MemberService {
 	    return memberDAO.getHobby();
 	}
 
+	public int delete(MemberVO memberVO) throws SQLException {
+		return memberDAO.withdraw(memberVO);
+	}
+
 }
