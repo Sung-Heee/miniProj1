@@ -46,6 +46,7 @@
         <div class="writer-area">핸드폰</div>
         <div class="writer-area">성별</div>
         <div class="title-area">취미</div>
+        <div class="admin-delete-btn"></div>
     </div>
   	<c:forEach var="member" items="${list}">
         <div class="list-content">

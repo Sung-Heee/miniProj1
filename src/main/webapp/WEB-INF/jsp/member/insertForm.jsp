@@ -17,43 +17,68 @@
 <div class="member-insertForm-container">
 <form id="insertForm" action="member.do" method="post">
 	<input type="hidden" name="action" value="insert">
-	
-	<label>아이디 : </label>
-	<input type="text" id="userId" name="userId" required> 
-	<input type="button" id="duplicateId" value="중복확인"><br/>
-	
-	<label>비밀번호 : </label>
-	<input type="password" id="userPassword" name="userPassword" required><br/>
-	
-	<label>비밀번호 확인 : </label>
-	<input type="password" id="userPasswordCheck" name="userPasswordCheck" required><br/>
-	
-	<label>이름 : </label>
-	<input type="text" id="userName" name="userName" required><br/>
-	
-	<label>나이 : </label>
-	<input type="number" id="userAge" name="userAge" required><br/>
-	
-	<label>주소 : </label>
-	<input type="text" id="userAddress" name="userAddress" required><br/>
-	
-	<label>핸드폰 번호 : </label>
-	<input type="text" id="userPhone" name="userPhone" required><br/>
-	
-	<label>성별 : </label>
-	<input type="radio" id="female" name="userSex" value="여자" required> <label for="female">여자</label>
-	<input type="radio" id="male" name="userSex" value="남자" required> <label for="male">남자</label><br/>
-	
-	
-	<label>취미 : </label>
-	<c:forEach var="hobby" items="${hobbyList}">
-		<input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}"> 
-		<label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>
-	</c:forEach>	
-	<br/><br/>
- 	
- 	<input class="btn" type="submit" value="등록" >
-	<a class="btn" href="member.do?action=list">취소</a>
+	<div class="member-insertForm-inner-container">
+	<div class="member-top-container">Sign Up</div>
+	<div class="member-input-container">
+		<div class="member-input-div">
+			<div class="member-label">아이디</div>
+			<div class="member-input"><input type="text" id="userId" name="userId" required></div> 
+			<div class="member-duplicatedId"><input type="button" id="duplicateId" value="중복확인"></div>
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">비밀번호</div>
+			<div class="member-input"><input type="password" id="userPassword" name="userPassword" required></div>
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">비밀번호 확인</div>
+			<div class="member-input"><input type="password" id="userPasswordCheck" name="userPasswordCheck" required></div>
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">이름</div>
+			<div class="member-input"><input type="text" id="userName" name="userName" required></div>
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">나이</div>
+			<div class="member-input"><input type="number" id="userAge" name="userAge" required></div>
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">주소</div>
+			<div class="member-input"><input type="text" id="userAddress" name="userAddress" required></div>
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">핸드폰</div>
+			<div class="member-input"><input type="text" id="userPhone" name="userPhone" required></div>
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">성별</div>
+			
+				<input class="input-radio" type="radio" id="female" name="userSex" value="여자" required> <label for="female">여자</label>
+				<input class="input-radio" type="radio" id="male" name="userSex" value="남자" required> <label for="male">남자</label>
+		
+		</div>
+		
+		<div class="member-input-div">
+			<div class="member-label">취미</div>
+			<c:forEach var="hobby" items="${hobbyList}">
+		
+				<input class="input-checkbox" type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}"> 
+				<label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>
+		
+			</c:forEach>	
+		</div>
+ 	</div>
+ 	<div class="member-insertForm-btn-container">
+	 	<input type="submit" value="회원가입" class="member-insertForm-btn">
+		<!-- <a class="btn" href="member.do?action=list">취소</a> -->
+	</div>
+	</div>
 </form>
 
 <script type="text/javascript">
