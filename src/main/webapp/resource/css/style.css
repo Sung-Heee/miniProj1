@@ -151,6 +151,8 @@
 	display : flex;
 	justify-content: flex-end;
 	width : 10%;
+	background-color: transparent;
+    border: none;
 }
 
 .searchbar-a:hover {

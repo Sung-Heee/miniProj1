@@ -25,12 +25,14 @@ public class MemberVO {
 	
 	//실행 명령 필드 
 	private String action;
+	private String delete_action;
+
 
 	//검색키
 	private String searchKey;
 	
 	public MemberVO(String memberId, String userId, String userPassword, String userName, int userAge, String userAddress, String userPhone, String userSex, List<String> hobbies) {
-	    this(memberId, userId, userPassword, userName, userAge, userAddress, userPhone, userSex, hobbies, "", "", "", "");
+	    this(memberId, userId, userPassword, userName, userAge, userAddress, userPhone, userSex, hobbies, "", "", "", "", "");
 	}
 	// memberId 설정
 	public void setMemberId(String memberId) {

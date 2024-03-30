@@ -105,6 +105,8 @@ public class MemberServlet extends HttpServlet {
 		case "updateForm" -> memberController.updateForm(request, memberVO);
 		case "update" -> memberController.update(request, memberVO);
 		case "existUserId" -> memberController.existUserId(request, memberVO);
+		case "delete" -> memberController.delete(request, memberVO);
+		
 		default -> "";
 		};
 		

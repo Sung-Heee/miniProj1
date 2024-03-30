@@ -16,11 +16,13 @@
 <%@ include file="../header/header.jsp" %>
 
 <div class="list-container">
-<form id="listForm" action="member.do" method="post">
+<!-- <form id="listForm" action="member.do" method="post">
     <input type="hidden" id="action" name="action" value="view">
     <input type="hidden" id="userId" name="userId" >
-</form>
+</form> -->
 
+<form id="searchForm" action="member.do" method="post" >
+<input type="hidden" name="action" value="list">
 <div class="list-inner-container">
 	<div class="list-top-menu">
 	<!-- 사용자 추가 대신 회원가입 -->
@@ -29,8 +31,8 @@
 		</div> -->
 		<div class="searchbar-container">
 			<div class="searchbar">
-				<input type="text" placeholder="이름을 입력해주세요." class="searchbar-input">
-				<a href="" class="searchbar-a">검색</a>
+				<input type="text" placeholder="제목을 입력해주세요." id="searchKey" name="searchKey" value="${param.searchKey}" class="searchbar-input">
+				<input type="submit" value="검색" class="searchbar-a">
 			</div>
 		</div>
 	</div>
@@ -54,13 +56,37 @@
             <div class="writer-area">${member.userPhone}</div>
             <div class="writer-area">${member.userSex}</div>
             <div class="title-area">${member.hobbies}</div>
+            <c:if test="${loginVO.userId eq 'admin'}">
+        		<div class="admin-delete-btn"><a href="javascript:jsDelete(${member.memberId})">삭제</a></div>
+        	</c:if>
         </div>
     </c:forEach>
 
 </div>
+
+</form>
 </div>
 
-<script>
+<form id="listForm" name="listForm" action="member.do" method="post">
+    <input type="hidden" id="delete_action" name="action" value="">
+    <input type="hidden" id="memberId" name="memberId" value="">
+</form>
+
+<script type="text/javascript">
+function jsDelete(memberId) {
+	if(confirm("사용자를 삭제하시겠습니까?")) {
+		document.getElementById("delete_action").value = "delete";
+		document.getElementById("memberId").value = memberId;
+		myFetch("member.do", "listForm", json => {
+			if (json.status == 0) {
+				alert(json.statusMessage);
+				location="member.do?action=list";
+			} else {
+				alert(json.statusMessage);		
+			}
+		})
+	}
+}
 
 </script>      
 </body>
