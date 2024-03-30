@@ -68,6 +68,7 @@
         <div class="title-area">제목</div>
         <div class="writer-area">작성자</div>
         <div class="date-area">작성일자</div>
+        <div class="admin-delete-btn"></div>
     </div>
     <c:forEach var="board" items="${list}">
 	<div class="list-content">

@@ -203,6 +203,11 @@
 	width : 10%;
 	display : flex;
  	justify-content: center;	
+ 	
+}
+
+.admin-delete-btn > a {
+	color : #8B78FF;
 }
 
 .title-a {
@@ -540,7 +545,7 @@
 
 .member-top-container {
 	height : 10%;
-	font-size: 40px;
+	font-size: 45px;
 	color :#8B78FF;
 }
 
@@ -594,12 +599,12 @@
 	cursor: pointer;
 }
 
-.member-duplicatedId:hover {
+.member-duplicatedId> input:hover {
 	background-color: #f3f3f3;
 }  
 
 .member-insertForm-btn-container {
-	width : 25%;
+	width : 30%;
 	cursor: pointer;
 	background-color: #8B78FF;
 	display: flex;
