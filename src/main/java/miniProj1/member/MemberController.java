@@ -4,8 +4,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class MemberController {
@@ -26,35 +29,57 @@ public class MemberController {
 		return "loginForm";
 	}
 
-	public Object login(HttpServletRequest request, MemberVO memberVO) throws SQLException {
-		// 로그인 하기 위해 로그인하려는 사용자의 정보를 가져온다.
-		MemberVO loginVO = memberService.detail(memberVO);
-		
-		// 가져온 정보와 사용자가 입력한 비밀번호가 같은지 확인
-		if (memberVO.isEqualPassword(loginVO)) {
-			
-			// 로그인 사용자의 정보를 세션에 기록 
-			HttpSession session = request.getSession();
-			session.setAttribute("loginVO", loginVO);
-			
-			System.out.println("로그인 성공!");
-			
-			// 만약 사용자가 입력한 아이디가 admin 이면 관리자로 로그인 되고 관리자 페이지로 이동 
-			if (memberVO.getUserId().equals("admin")) {
-				return "redirect:member.do?action=list";
-			}
-		} else {
-			return "redirect:member.do?action=loginForm&err=invalidUserId";
-		}
-		return "redirect:board.do?action=list";
+	public Object login(HttpServletRequest request, MemberVO memberVO, HttpServletResponse response) throws SQLException {
+	    // 로그인 하기 위해 로그인하려는 사용자의 정보를 가져온다.
+	    MemberVO loginVO = memberService.detail(memberVO);
+	    
+	    // 가져온 정보와 사용자가 입력한 비밀번호가 같은지 확인
+	    if (memberVO.isEqualPassword(loginVO)) {
+	        
+	        // 로그인 사용자의 정보를 세션에 기록 
+	        HttpSession session = request.getSession();
+	        session.setAttribute("loginVO", loginVO);
+	        session.setMaxInactiveInterval(30*60*1000);
+
+	        // 자동 로그인 처리
+	        if ("Y".equals(memberVO.getAutologin())) {
+	        	System.out.println("여기 왔니");
+	            // 1. UUID를 생성하여 사용자 테이블의 uuid을 변경한다
+	            String uuid = UUID.randomUUID().toString();
+	            memberVO.setUseruuid(uuid);
+	            memberService.updateUUID(memberVO);
+	            
+	            // 2. uuid값을 쿠키에 기록한다
+	            Cookie uuidCookie = new Cookie("uuidCookie", uuid);
+	            uuidCookie.setMaxAge(24 * 60 * 60); // 24시간
+	            uuidCookie.setPath("/");
+	            response.addCookie(uuidCookie);
+	        }
+	        
+	        System.out.println("로그인 성공!");
+	        
+	        // 만약 사용자가 입력한 아이디가 admin 이면 관리자로 로그인 되고 관리자 페이지로 이동 
+	        if ("admin".equals(loginVO.getUserId())) {
+	            return "redirect:member.do?action=list";
+	        }
+	    } else {
+	        return "redirect:member.do?action=loginForm&err=invalidUserId";
+	    }
+	    return "redirect:board.do?action=list";
 	}
 
-	public Object logout(HttpServletRequest request) {
+
+	public Object logout(HttpServletRequest request) throws SQLException {
 		Map<String, Object> map = new HashMap<>();
 		
 		HttpSession session = request.getSession();
+		MemberVO loginVO = (MemberVO) session.getAttribute("loginVO");
+		loginVO.setUseruuid("");
+		memberService.updateUUID(loginVO);
+	
 		session.removeAttribute("loginVO"); // 로그인 정보 삭제
-		session.invalidate(); // 세션에 저장된 모든 자료 삭제 
+		session.invalidate(); // 세션에 저장된 모든 자료 삭제
+		
 		map.put("status", 0);
 		map.put("statusMessage", "로그아웃 되었습니다.");
 		

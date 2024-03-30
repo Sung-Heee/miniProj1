@@ -47,7 +47,7 @@
 	
 	<label>취미 : </label>
 	<c:forEach var="hobby" items="${hobbyList}">
-		<input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" required value="${hobby.hobbyName}"> 
+		<input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}"> 
 		<label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>
 	</c:forEach>	
 	<br/><br/>

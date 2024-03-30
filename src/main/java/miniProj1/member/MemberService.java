@@ -35,4 +35,8 @@ public class MemberService {
 		return memberDAO.withdraw(memberVO);
 	}
 
+	public void updateUUID(MemberVO memberVO) throws SQLException {
+		memberDAO.updateUUID(memberVO);
+	}
+
 }
