@@ -55,8 +55,8 @@
 				<div class="mypage-area">
 						<div class="mypage-title-area">성별</div>
 				        <div class="mypage-content-area">
-				            <input type="radio" id="female" name="userSex" value="여자" <c:if test="${loginVO.userSex eq '여자'}">checked</c:if>> <label for="female">여자</label>
-				            <input type="radio" id="male" name="userSex" value="남자" <c:if test="${loginVO.userSex eq '남자'}">checked</c:if>> <label for="male">남자</label>
+				            <input type="radio" id="female" name="userSex" value="여자" class="input-radio" <c:if test="${loginVO.userSex eq '여자'}">checked</c:if>> <label for="female">여자</label>
+				            <input type="radio" id="male" name="userSex" value="남자" class="input-radio" <c:if test="${loginVO.userSex eq '남자'}">checked</c:if>> <label for="male">남자</label>
 				        </div>
 				</div>
 			</div>
