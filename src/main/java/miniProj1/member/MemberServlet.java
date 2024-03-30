@@ -98,7 +98,7 @@ public class MemberServlet extends HttpServlet {
 		case "insertForm" -> memberController.insertForm(request, memberVO);
 		case "insert" -> memberController.insert(request, memberVO);
 		case "loginForm" -> memberController.loginForm(request);
-		case "login" -> memberController.login(request, memberVO);
+		case "login" -> memberController.login(request, memberVO, response);
 		case "logout" -> memberController.logout(request);
 		case "mypage" -> memberController.mypage(request, memberVO);
 		case "withdraw" -> memberController.withdraw(request, memberVO);

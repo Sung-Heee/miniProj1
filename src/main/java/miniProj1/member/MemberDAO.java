@@ -30,6 +30,10 @@ public class MemberDAO {
     private static PreparedStatement hobbyPstmt = null;
     // 멤버 이름 검색 
     private static PreparedStatement memberSearchPstmt = null;
+    // uuid를 이용하여 사용자 정보를 얻는다.
+    private static PreparedStatement memberFormUUIDPstmt = null;
+    // userid 이용하여 uuid를 변경한다
+    private static PreparedStatement memberUpdateUUIDPstmt = null; 
     
 	
 	    
@@ -56,6 +60,8 @@ public class MemberDAO {
             memberUpdatePstmt = conn.prepareStatement("UPDATE tb_member SET user_id=?, user_password=?, user_name=?, user_age=?, user_address=?, user_phone=?, user_sex=? WHERE member_id=?");
             hobbyPstmt = conn.prepareStatement("SELECT * FROM TB_HOBBY");
             memberSearchPstmt = conn.prepareStatement("SELECT M.member_id, M.user_id, M.user_password, M.user_name, M.user_age, M.user_address, M.user_phone, M.user_sex, GROUP_CONCAT(H.hobby_name) AS hobbies FROM TB_MEMBER M LEFT JOIN TB_MEMBER_HOBBY MH ON M.member_id = MH.member_id LEFT JOIN TB_HOBBY H ON MH.hobby_id = H.hobby_id WHERE M.user_id <> 'admin' AND M.user_id LIKE ? GROUP BY M.member_id");
+            memberFormUUIDPstmt = conn.prepareStatement("select * from TB_MEMBER where useruuid=?");
+            memberUpdateUUIDPstmt = conn.prepareStatement("update TB_MEMBER set useruuid=? where user_id=?");
             
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -241,6 +247,40 @@ public class MemberDAO {
 		}
 		rs.close();
 		return hobbyList;
+	}
+
+	public int updateUUID(MemberVO memberVO) throws SQLException {
+        int updated = 0;
+        
+        memberUpdateUUIDPstmt.setString(1, memberVO.getUseruuid());
+        memberUpdateUUIDPstmt.setString(2, memberVO.getUserId());
+        updated = memberUpdateUUIDPstmt.executeUpdate();
+        conn.commit();
+                
+        return updated;
+
+    }   
+
+	public MemberVO getMemberVOFromUUID(MemberVO memberVO) throws SQLException {
+		MemberVO member = null;
+        memberFormUUIDPstmt.setString(1, memberVO.getUseruuid());
+
+        ResultSet rs = memberFormUUIDPstmt.executeQuery();
+        if (rs.next()) {
+            member = MemberVO.builder()
+            		.userId(rs.getString("user_id"))
+            		.userPassword(rs.getString("user_password"))
+            		.userName(rs.getString("user_name"))
+            		.userAge(rs.getInt("user_age"))
+            		.userAddress(rs.getString("user_address"))
+            		.userPhone("user_phone")
+            		.userSex(rs.getString("user_sex"))
+            		.useruuid(rs.getString("useruuid"))
+             		.build();
+        }
+        
+        rs.close();
+        return member;
 	}
 
 
