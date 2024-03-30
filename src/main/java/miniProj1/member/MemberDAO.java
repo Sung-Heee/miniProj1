@@ -28,6 +28,8 @@ public class MemberDAO {
     private static PreparedStatement memberUpdatePstmt = null;
     // 취미 가져오기
     private static PreparedStatement hobbyPstmt = null;
+    // 멤버 이름 검색 
+    private static PreparedStatement memberSearchPstmt = null;
 	
 	    
 	static {
@@ -52,6 +54,7 @@ public class MemberDAO {
             memberDeleteHobbyPstmt = conn.prepareStatement("DELETE FROM tb_member_hobby WHERE member_id = ?");
             memberUpdatePstmt = conn.prepareStatement("UPDATE tb_member SET user_id=?, user_password=?, user_name=?, user_age=?, user_address=?, user_phone=?, user_sex=? WHERE member_id=?");
             hobbyPstmt = conn.prepareStatement("SELECT * FROM TB_HOBBY");
+            memberSearchPstmt = conn.prepareStatement("SELECT M.member_id, M.user_id, M.user_password, M.user_name, M.user_age, M.user_address, M.user_phone, M.user_sex, GROUP_CONCAT(H.hobby_name) AS hobbies FROM TB_MEMBER M LEFT JOIN TB_MEMBER_HOBBY MH ON M.member_id = MH.member_id LEFT JOIN TB_HOBBY H ON MH.hobby_id = H.hobby_id WHERE M.user_id <> 'admin' AND M.user_id LIKE ? GROUP BY M.member_id");
             
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -66,8 +69,13 @@ public class MemberDAO {
 		ResultSet rs = null;
 		
 		// 검색
-		
-		rs = memberListPstmt.executeQuery();
+		String searchKey = memberVO.getSearchKey();
+		if (searchKey != null && searchKey.length() != 0) {
+			memberSearchPstmt.setString(1, "%" + searchKey + "%");
+			rs = memberSearchPstmt.executeQuery();
+		} else {
+			rs = memberListPstmt.executeQuery(); 
+		}
 		
 		 while (rs.next()) {
 	            String memberId = rs.getString("member_id");

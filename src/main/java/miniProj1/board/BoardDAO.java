@@ -21,6 +21,8 @@ public class BoardDAO {
     private static PreparedStatement boardInsertPstmt = null;
     // update
     private static PreparedStatement boardUpdatePstmt = null; 
+    // search
+    private static PreparedStatement boardSearchPstmt = null;
 
     static {
     	try {
@@ -41,6 +43,7 @@ public class BoardDAO {
             boardDeletePstmt = conn.prepareStatement("DELETE FROM TB_BOARD WHERE BOARD_ID = ?");
             boardInsertPstmt = conn.prepareStatement("INSERT INTO TB_BOARD (BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER) VALUES(?, ?, ?)");
             boardUpdatePstmt = conn.prepareStatement("UPDATE TB_BOARD SET BOARD_TITLE = ?, BOARD_CONTENT =? WHERE BOARD_ID = ?");
+            boardSearchPstmt = conn.prepareStatement("SELECT * FROM TB_BOARD WHERE BOARD_TITLE LIKE ?");
     	} catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -51,9 +54,16 @@ public class BoardDAO {
     public List<BoardVO> list(BoardVO boardVO) throws SQLException {
     	List<BoardVO> list = new ArrayList<>();
     	ResultSet rs = null;
-    	rs = boardListPstmt.executeQuery();
+
     	// 검색
-    		
+    	String searchKey = boardVO.getSearchKey();
+    	if (searchKey != null && searchKey.length() != 0) {
+    		boardSearchPstmt.setString(1, "%" + searchKey + "%");
+    		rs = boardSearchPstmt.executeQuery();
+    	} else {
+    		rs = boardListPstmt.executeQuery();
+    	}
+   		
     	while (rs.next()) {
     		BoardVO board = new BoardVO(rs.getString("BOARD_ID")
    					, rs.getString("BOARD_TITLE")

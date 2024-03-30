@@ -15,6 +15,9 @@
 <!-- 헤더 --> 
 <%@ include file="../header/header.jsp" %>
 
+<form id="searchForm" action="board.do" method="post" >
+<input type="hidden" id="action" name="action" value="list">
+
 <div class="list-container">
 <div class="list-inner-container">
 
@@ -23,12 +26,14 @@
 		<c:choose>
 		
 		<c:when test="${empty sessionScope.loginVO}">	
+		
 		<div class="searchbar-container">
 			<div class="searchbar">
-				<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
-				<a href="" class="searchbar-a">검색</a>
+				<input type="text" placeholder="제목을 입력해주세요." id="searchKey" name="searchKey" value="${param.searchKey}" class="searchbar-input">
+				<input type="submit" value="검색" class="searchbar-a">	
 			</div>
 		</div>
+		
 		</c:when>
 		
 		<c:otherwise>
@@ -36,16 +41,16 @@
 			<c:if test="${loginVO.userId eq 'admin'}">
 				<div class="searchbar-container">
 					<div class="searchbar">
-						<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
-						<a href="" class="searchbar-a">검색</a>
+						<input type="text" placeholder="제목을 입력해주세요." id="searchKey" name="searchKey" value="${param.searchKey}" class="searchbar-input">
+						<input type="submit" value="검색" class="searchbar-a">
 					</div>
 				</div>
 			</c:if>
 			<c:if test="${loginVO.userId ne 'admin'}">
 				<div class="searchbar-container">
 					<div class="searchbar">
-						<input type="text" placeholder="제목을 입력해주세요." class="searchbar-input">
-						<a href="" class="searchbar-a">검색</a>
+						<input type="text" placeholder="제목을 입력해주세요." id="searchKey" name="searchKey" value="${param.searchKey}" class="searchbar-input">
+						<input type="submit" value="검색" class="searchbar-a">
 					</div>
 				</div>
 				<div class="insert-container">
@@ -78,7 +83,7 @@
 
 </div>
 </div>
-
+</form>
 <form id="listForm" name="listForm" action="board.do" method="post">
     <input type="hidden" id="action" name="action" value="">
     <input type="hidden" id="bno" name="bno" value="">
