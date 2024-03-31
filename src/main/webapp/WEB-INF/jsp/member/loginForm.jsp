@@ -24,7 +24,7 @@
 <div class="login-container">
 <form id="loginForm" action="member.do" method="post" >
 	<div class="login-inner-container">
-		<div class="login-top-container">Login</div>
+		<div class="login-top-container"><h1>Login</h1></div>
 		<div class="login-input-container">
     		<input type="hidden" name="action" value="login">
     		<div class="login-id">
