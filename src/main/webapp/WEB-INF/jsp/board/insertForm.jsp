@@ -23,6 +23,7 @@
 	<input type="hidden" id="bwriter" name="bwriter" value="${loginVO.userId}">
 	
 <div class="insertForm-inner-container">
+	<div class="insertForm-top-container"><h1>Writing</h1></div>
 	<div class="insertForm-title-container">
 		<div class="insertForm-title">Title</div>
 		<input class="insertForm-title-input" type="text" id="btitle" name="btitle" placeholder="제목을 입력해주세요.">

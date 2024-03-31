@@ -18,7 +18,7 @@
 <form id="insertForm" action="member.do" method="post">
 	<input type="hidden" name="action" value="insert">
 	<div class="member-insertForm-inner-container">
-	<div class="member-top-container">Sign Up</div>
+	<div class="member-top-container"><h1>Sign Up</h1></div>
 	<div class="member-input-container">
 		<div class="member-input-div">
 			<div class="member-label">아이디</div>
