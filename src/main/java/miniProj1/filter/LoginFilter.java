@@ -24,7 +24,7 @@ import miniProj1.member.MemberVO;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/*.do")
+@WebFilter("*.do")
 public class LoginFilter extends HttpFilter implements Filter {
 	MemberDAO memberDAO = new MemberDAO();
        
@@ -60,7 +60,7 @@ public class LoginFilter extends HttpFilter implements Filter {
 			Set<String> actionSet = new HashSet<>();
 			// 회원가입이랑 로그인 페이지는 로그인하지 않아도 접근 가능하니까 
 			// 아래 항목을 actionSet 에 저장 
-			actionSet.add("insertForm"); // 회원가입 
+//			actionSet.add("insertForm"); // 회원가입 
 			actionSet.add("insert");
 			actionSet.add("loginForm"); 
 			actionSet.add("login");
