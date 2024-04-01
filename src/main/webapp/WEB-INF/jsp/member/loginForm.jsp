@@ -22,11 +22,11 @@
 <%@ include file="../header/header.jsp" %>
 
 <div class="login-container">
-<form id="loginForm" action="member.do" method="post" >
+<form id="loginForm" action="member.do?action=login" method="post" >
 	<div class="login-inner-container">
 		<div class="login-top-container"><h1>Login</h1></div>
 		<div class="login-input-container">
-    		<input type="hidden" name="action" value="login">
+    	
     		<div class="login-id">
     			<input type="text" class="login-id-input" id="userId" name=userId required="required" value="${parqa.userId}" placeholder="id">
     		</div>

@@ -19,9 +19,7 @@
 <input type="hidden" id="action" name="action" value="list">
 
 <div class="list-container">
-<div class="list-inner-container">
-
-	
+	<div class="list-inner-container">
 	<div class="list-top-menu">
 		<c:choose>
 		
@@ -81,10 +79,11 @@
         </c:if>
 	</div>	
     </c:forEach>
-
+	</div>
 </div>
 </div>
 </form>
+
 <form id="listForm" name="listForm" action="board.do" method="post">
     <input type="hidden" id="action" name="action" value="">
     <input type="hidden" id="bno" name="bno" value="">
